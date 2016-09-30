@@ -5,18 +5,20 @@ using ShortestWayFinder.Domain;
 using ShortestWayFinder.Domain.Infrastructure.Configuration;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using ShortestWayFinder.Domain.Infrastructure.Repositories;
+using ShortestWayFinder.Web.Contracts;
+using ShortestWayFinder.Web.Services;
 
 namespace ShortestWayFinder.Web
 {
     public class Startup
     {
-        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataDbContext>(opt => opt.UseInMemoryDatabase());
 
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
             services.AddScoped<IPathRepository, PathRepository>();
+            services.AddScoped<IPathService, PathService>();
             services.AddMvc();
         }
 
