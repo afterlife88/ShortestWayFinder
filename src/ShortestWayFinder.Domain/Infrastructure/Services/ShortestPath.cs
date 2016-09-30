@@ -47,7 +47,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Services
             }
 
             edges.Add(new List<Edge>());
-            GetPaths(source, minimumNode, edges, edges.Count - 1);
+            GetPaths(minimumNode, edges, edges.Count - 1);
 
             return edges;
         }
@@ -64,7 +64,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Services
             }
             set
             {
-                _matrix = value; ;
+                _matrix = value;
             }
         }
 
@@ -119,11 +119,12 @@ namespace ShortestWayFinder.Domain.Infrastructure.Services
             {
                 IEnumerable<Node> unVisitedNeighbors = GetUnVisitedNeighbors(currentNode);
 
-                if (unVisitedNeighbors.Any())
+                var visitedNeighbors = unVisitedNeighbors as Node[] ?? unVisitedNeighbors.ToArray();
+                if (visitedNeighbors.Any())
                 {
-                    RelaxNeighboringNodes(currentNode, unVisitedNeighbors);
+                    RelaxNeighboringNodes(currentNode, visitedNeighbors);
 
-                    Node minimumNodeEndingHere = unVisitedNeighbors.Aggregate((a, b) => a.CostFromSource < b.CostFromSource ? a : b);
+                    Node minimumNodeEndingHere = visitedNeighbors.Aggregate((a, b) => a.CostFromSource < b.CostFromSource ? a : b);
 
                     if (!minimumNodeSoFar.CostFromSource.HasValue || minimumNodeSoFar.CostFromSource > minimumNodeEndingHere.CostFromSource)
                     {
@@ -169,7 +170,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Services
             }
         }
 
-        private void GetPaths(string source, Node destination, List<List<Edge>> edges, int level)
+        private void GetPaths(Node destination, List<List<Edge>> edges, int level)
         {
             if (destination.Parents == null)
             {
@@ -195,7 +196,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Services
                 };
 
                 edges[level].Add(edge);
-                GetPaths(source, originNode, edges, level);
+                GetPaths(originNode, edges, level);
                 i++;
             }
         }

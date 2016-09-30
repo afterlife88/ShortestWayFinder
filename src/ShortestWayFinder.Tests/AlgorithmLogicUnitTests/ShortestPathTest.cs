@@ -77,13 +77,37 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
             // https://s12.postimg.org/qpcibaoy5/scenario_B.png
             //Assert
             Assert.Equal(1, path.Count);
-
+           
             // 2 edges are in short path
             Assert.Equal(2, path[0].Count);
 
             // Sum of cost (time) on edges to shortest path 
             // 100 + 1
             Assert.Equal(101, path[0].Sum(e => e.Cost));
+        }
+        [Fact]
+        public void GetShortestPath_ReturnsEmptyResult_WhenPathNotExisted()
+        {
+            //Arrange
+            var edges = new[]
+            {
+                new Edge{Start="a",End="b",Cost=1},
+                new Edge{Start="b",End="c",Cost=1000},
+                new Edge{Start="c",End="d",Cost=1},
+                new Edge{Start="d",End="a",Cost=100},
+                new Edge{Start="x",End="x",Cost=100},
+            };
+            IShortestPath targt = new ShortestPath(edges);
+
+            //Act
+            IList<List<Edge>> path = targt.GetShortestPath("a", "x");
+
+            // Expecting shortest path is not exist
+            // Picture of particular graph you can view here:
+            // https://s14.postimg.org/lm581w7j5/No_Existed_Path.png
+
+            //Assert
+            Assert.Equal(0, path.Count);
         }
     }
 }
