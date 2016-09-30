@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShortestWayFinder.Domain;
+using ShortestWayFinder.Domain.Infrastructure.Configuration;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
+using ShortestWayFinder.Domain.Infrastructure.Repositories;
 
 namespace ShortestWayFinder.Web
 {
@@ -14,6 +15,8 @@ namespace ShortestWayFinder.Web
         {
             services.AddDbContext<DataDbContext>(opt => opt.UseInMemoryDatabase());
 
+            services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
+            services.AddScoped<IPathRepository, PathRepository>();
             services.AddMvc();
         }
 
