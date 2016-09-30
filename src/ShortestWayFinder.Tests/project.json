@@ -6,14 +6,15 @@
       "version": "1.0.1",
       "type": "platform"
     },
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
     "Moq": "4.6.38-alpha",
     "NETStandard.Library": "1.6.0",
-    "xunit": "2.1.0",
+    "xunit": "2.2.0-beta2-build3300",
     "Microsoft.AspNetCore.TestHost": "1.0.0",
     "ShortestWayFinder.Domain": "1.0.0-*"
   },
 
-   "frameworks": {
+  "frameworks": {
     "netcoreapp1.0": {
       "imports": [
         "dotnet5.6",
