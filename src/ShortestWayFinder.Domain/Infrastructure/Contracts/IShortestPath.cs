@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ShortestWayFinder.Domain.Entities;
+using ShortestWayFinder.Domain.GraphEntities;
 
 namespace ShortestWayFinder.Domain.Infrastructure.Contracts
 {

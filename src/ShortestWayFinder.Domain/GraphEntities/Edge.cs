@@ -1,4 +1,4 @@
-﻿namespace ShortestWayFinder.Domain.Entities
+﻿namespace ShortestWayFinder.Domain.GraphEntities
 {
     public class Edge
     {

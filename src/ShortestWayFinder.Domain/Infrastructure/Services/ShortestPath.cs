@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ShortestWayFinder.Domain.Entities;
+using ShortestWayFinder.Domain.GraphEntities;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 
 namespace ShortestWayFinder.Domain.Infrastructure.Services

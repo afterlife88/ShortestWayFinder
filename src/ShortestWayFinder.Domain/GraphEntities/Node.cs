@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace ShortestWayFinder.Domain.Entities
+namespace ShortestWayFinder.Domain.GraphEntities
 {
     public class Node
     {
