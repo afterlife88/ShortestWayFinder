@@ -3,9 +3,9 @@ using System.Linq;
 using ShortestWayFinder.Domain.GraphEntities;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 
-namespace ShortestWayFinder.Domain.Infrastructure.Services
+namespace ShortestWayFinder.Domain.Infrastructure.Algorithms
 {
-    public class ShortestPath : IShortestPath
+    public class ShortestPathAlgorithm : IShortestPath
     {
         #region Member Variables
 
@@ -16,7 +16,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Services
 
         #region Constructor
 
-        public ShortestPath(IEnumerable<Edge> graph)
+        public ShortestPathAlgorithm(IEnumerable<Edge> graph)
         {
             _matrix = CreateMatrix(graph);
             _visitedNodes = new HashSet<Node>();

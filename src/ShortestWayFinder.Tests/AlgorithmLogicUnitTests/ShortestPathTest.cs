@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ShortestWayFinder.Domain.GraphEntities;
+using ShortestWayFinder.Domain.Infrastructure;
+using ShortestWayFinder.Domain.Infrastructure.Algorithms;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
-using ShortestWayFinder.Domain.Infrastructure.Services;
 using Xunit;
 
 namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
@@ -36,7 +37,7 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
 
                 new Edge{Start="f",End="t",Cost=3}
             };
-            IShortestPath targt = new ShortestPath(edges);
+            IShortestPath targt = new ShortestPathAlgorithm(edges);
 
             //Act
             IList<List<Edge>> path = targt.GetShortestPath("o", "t");
@@ -67,7 +68,7 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
                 new Edge{Start="c",End="d",Cost=1},
                 new Edge{Start="d",End="a",Cost=100},
             };
-            IShortestPath targt = new ShortestPath(edges);
+            IShortestPath targt = new ShortestPathAlgorithm(edges);
 
             //Act
             IList<List<Edge>> path = targt.GetShortestPath("a", "c");
@@ -97,7 +98,7 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
                 new Edge{Start="d",End="a",Cost=100},
                 new Edge{Start="x",End="x",Cost=100},
             };
-            IShortestPath targt = new ShortestPath(edges);
+            IShortestPath targt = new ShortestPathAlgorithm(edges);
 
             //Act
             IList<List<Edge>> path = targt.GetShortestPath("a", "x");
