@@ -7,7 +7,7 @@ namespace ShortestWayFinder.Web.Contracts
     public interface IPathService
     {
         Task<bool> CreatePathAsync(PathDto pathDto);
-
         Task<IEnumerable<PathDto>> GetAllExistedPathsAsync();
+        Task<bool> RemovePathAsync(int id);
     }
 }

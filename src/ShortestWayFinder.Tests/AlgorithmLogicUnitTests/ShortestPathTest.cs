@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ShortestWayFinder.Domain.GraphEntities;
-using ShortestWayFinder.Domain.Infrastructure;
 using ShortestWayFinder.Domain.Infrastructure.Algorithms;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using Xunit;

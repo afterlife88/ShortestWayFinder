@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ShortestWayFinder.Domain;
+using ShortestWayFinder.Domain.Infrastructure.Algorithms;
 using ShortestWayFinder.Domain.Infrastructure.Configuration;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using ShortestWayFinder.Domain.Infrastructure.Repositories;
@@ -20,6 +21,7 @@ namespace ShortestWayFinder.Web
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
             services.AddScoped<IPathRepository, PathRepository>();
             services.AddScoped<IPathService, PathService>();
+            services.AddScoped<IShortestPath, ShortestPathAlgorithm>();
             services.AddMvc();
         }
 

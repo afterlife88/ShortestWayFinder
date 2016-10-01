@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,16 +18,15 @@ namespace ShortestWayFinder.Web.Controllers
         }
 
         // GET api/path
-
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<PathDto>), 200)]
+        [ProducesResponseType(typeof(InternalServerErrorResult), 500)]
         public async Task<IActionResult> GetAll()
         {
             try
             {
                 var result = await _pathService.GetAllExistedPathsAsync();
-
                 return Ok(result);
-
             }
             catch (Exception ex)
             {

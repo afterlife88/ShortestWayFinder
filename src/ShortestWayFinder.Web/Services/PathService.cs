@@ -22,7 +22,6 @@ namespace ShortestWayFinder.Web.Services
 
             return Mapper.Map<IEnumerable<Path>, IEnumerable<PathDto>>(paths);
         }
-
         public async Task<bool> CreatePathAsync(PathDto pathDto)
         {
 
@@ -35,5 +34,10 @@ namespace ShortestWayFinder.Web.Services
 
             return true;
         }
+        public Task<bool> RemovePathAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
     }
 }
