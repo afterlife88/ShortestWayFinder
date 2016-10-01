@@ -4,10 +4,11 @@ namespace ShortestWayFinder.Web.Models
 {
     public class PathDto
     {
+        public int? Id { get; set; }
         [Required]
-        public string PointA { get; set; }
+        public string FirstPoint { get; set; }
         [Required]
-        public string PointB { get; set; }
+        public string SecondPoint { get; set; }
         [Required]
         public int Time { get; set; }
     }

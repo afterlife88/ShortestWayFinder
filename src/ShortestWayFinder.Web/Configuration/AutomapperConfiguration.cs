@@ -17,9 +17,11 @@ namespace ShortestWayFinder.Web.Configuration
             Mapper.Initialize(config =>
             {
                 config.CreateMap<PathDto, Path>()
-                    .ForMember(dest => dest.FirstPoint, dto => dto.MapFrom(src => src.PointA))
-                    .ForMember(dest => dest.SecondPoint, dto => dto.MapFrom(src => src.PointB))
-                    .ForMember(dest => dest.EstimatingTime, dto => dto.MapFrom(src => src.Time));
+                    .ForMember(dest => dest.FirstPoint, dto => dto.MapFrom(src => src.FirstPoint))
+                    .ForMember(dest => dest.SecondPoint, dto => dto.MapFrom(src => src.SecondPoint))
+                    .ForMember(dest => dest.EstimatingTime, dto => dto.MapFrom(src => src.Time))
+                    .ReverseMap()
+                    .ForMember(dto => dto.Time, model => model.MapFrom(src => src.EstimatingTime));
             });
         }
     }

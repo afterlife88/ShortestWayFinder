@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using ShortestWayFinder.Domain.DatabaseModels;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
@@ -15,10 +16,17 @@ namespace ShortestWayFinder.Web.Services
         {
             _pathRepository = pathRepository;
         }
+        public async Task<IEnumerable<PathDto>> GetAllExistedPathsAsync()
+        {
+            var paths = await _pathRepository.GetAllAsync();
+
+            return Mapper.Map<IEnumerable<Path>, IEnumerable<PathDto>>(paths);
+        }
+
         public async Task<bool> CreatePathAsync(PathDto pathDto)
         {
 
-            var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNames(pathDto.PointA, pathDto.PointA);
+            var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNames(pathDto.FirstPoint, pathDto.SecondPoint);
 
             if (checkIsAlreadyPathExist != null)
                 return false;

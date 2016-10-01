@@ -15,7 +15,28 @@ namespace ShortestWayFinder.Web.Controllers
         {
             _pathService = pathService;
         }
+
+        // GET api/path
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var result = await _pathService.GetAllExistedPathsAsync();
+
+                return Ok(result);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        // POST api/path/add
         [Route("add")]
+        [HttpPost]
         [ProducesResponseType(typeof(StatusCodeResult), 201)]
         [ProducesResponseType(typeof(BadRequestResult), 400)]
         [ProducesResponseType(typeof(InternalServerErrorResult), 500)]
@@ -31,7 +52,6 @@ namespace ShortestWayFinder.Web.Controllers
                 if (!result)
                     return BadRequest("This path already exist!");
                 return StatusCode(201);
-
             }
             catch (Exception ex)
             {
