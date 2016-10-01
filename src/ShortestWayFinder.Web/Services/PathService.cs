@@ -25,18 +25,23 @@ namespace ShortestWayFinder.Web.Services
         public async Task<bool> CreatePathAsync(PathDto pathDto)
         {
 
-            var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNames(pathDto.FirstPoint, pathDto.SecondPoint);
+            var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNamesAsync(pathDto.FirstPoint, pathDto.SecondPoint);
 
             if (checkIsAlreadyPathExist != null)
                 return false;
 
-            await _pathRepository.AddPath(Mapper.Map<PathDto, Path>(pathDto));
+            await _pathRepository.AddPathAsync(Mapper.Map<PathDto, Path>(pathDto));
 
             return true;
         }
-        public Task<bool> RemovePathAsync(int id)
+        public async Task<bool> RemovePathAsync(int id)
         {
-            throw new System.NotImplementedException();
+            var getPathItem = await _pathRepository.GetAsync(id);
+            if (getPathItem == null)
+                return false;
+
+            await _pathRepository.RemoveAsync(getPathItem);
+            return true;
         }
 
     }

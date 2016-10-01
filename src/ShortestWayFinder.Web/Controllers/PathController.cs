@@ -59,5 +59,26 @@ namespace ShortestWayFinder.Web.Controllers
             }
         }
 
+        // DELETE api/path/2
+
+        [Route("{id")]
+        [HttpDelete]
+        [ProducesResponseType(typeof(StatusCodeResult), 200)]
+        public async Task<IActionResult> RemovePath(int id)
+        {
+            try
+            {
+                var result = await _pathService.RemovePathAsync(id);
+
+                if (!result)
+                    return NotFound();
+
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

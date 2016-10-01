@@ -8,11 +8,10 @@ namespace ShortestWayFinder.Web.Models
         public int? Id { get; set; }
         [Required]
         public string FirstPoint { get; set; }
-        
         [Required]
         [PointsNameNotEqual("FirstPoint", ErrorMessage = "Second point can not be first point!")]
         public string SecondPoint { get; set; }
-        [Required]
+        [Required]  
         public int Time { get; set; }
     }
 }

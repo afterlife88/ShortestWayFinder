@@ -16,22 +16,23 @@ namespace ShortestWayFinder.Domain.Infrastructure.Repositories
             _dataDbContext = dataDbContext;
         }
 
-        public async Task<int> AddPath(Path model)
+        public async Task<int> AddPathAsync(Path model)
         {
             _dataDbContext.Paths.Add(model);
             return await _dataDbContext.SaveChangesAsync();
         }
+
         public async Task<IEnumerable<Path>> GetAllAsync()
         {
             return await _dataDbContext.Paths.ToArrayAsync();
         }
 
-        public async Task<Path> Get(int id)
+        public async Task<Path> GetAsync(int id)
         {
             return await _dataDbContext.Paths.SingleOrDefaultAsync(r => r.Id == id);
         }
 
-        public async Task<Path> GetByPointsNames(string firstPointName, string secondPointName)
+        public async Task<Path> GetByPointsNamesAsync(string firstPointName, string secondPointName)
         {
             return
                 await
@@ -40,5 +41,12 @@ namespace ShortestWayFinder.Domain.Infrastructure.Repositories
                             string.Equals(r.FirstPoint, firstPointName, StringComparison.CurrentCultureIgnoreCase) &&
                             string.Equals(r.SecondPoint, secondPointName, StringComparison.CurrentCultureIgnoreCase));
         }
+        public async Task<int> RemoveAsync(Path model)
+        {
+            _dataDbContext.Paths.Remove(model);
+            return await _dataDbContext.SaveChangesAsync();
+        }
+
+
     }
 }

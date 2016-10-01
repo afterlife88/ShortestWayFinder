@@ -7,8 +7,9 @@ namespace ShortestWayFinder.Domain.Infrastructure.Contracts
     public interface IPathRepository
     {
         Task<IEnumerable<Path>> GetAllAsync();
-        Task<Path> GetByPointsNames(string firstPointName, string secondPointName);
-        Task<Path> Get(int id);
-        Task<int> AddPath(Path model);
+        Task<Path> GetByPointsNamesAsync(string firstPointName, string secondPointName);
+        Task<Path> GetAsync(int id);
+        Task<int> AddPathAsync(Path model);
+        Task<int> RemoveAsync(Path model);
     }
 }
