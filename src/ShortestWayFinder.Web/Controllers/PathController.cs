@@ -34,7 +34,22 @@ namespace ShortestWayFinder.Web.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+        [Route("points")]
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<PointDto>), 200)]
+        [ProducesResponseType(typeof(InternalServerErrorResult), 500)]
+        public async Task<IActionResult> GetAllPoints()
+        {
+            try
+            {
+                var result = await _pathService.GetPointsAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         // POST api/path/add
         [Route("add")]
         [HttpPost]

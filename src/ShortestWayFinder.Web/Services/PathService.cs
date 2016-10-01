@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore.Internal;
 using ShortestWayFinder.Domain.DatabaseModels;
 using ShortestWayFinder.Domain.GraphEntities;
 using ShortestWayFinder.Domain.Infrastructure.Algorithms;
@@ -8,6 +10,7 @@ using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using ShortestWayFinder.Web.Contracts;
 using ShortestWayFinder.Web.Exceptions;
 using ShortestWayFinder.Web.Models;
+using ShortestWayFinder.Web.Utils;
 
 namespace ShortestWayFinder.Web.Services
 {
@@ -25,6 +28,20 @@ namespace ShortestWayFinder.Web.Services
             var paths = await _pathRepository.GetAllAsync();
 
             return Mapper.Map<IEnumerable<Path>, IEnumerable<PathDto>>(paths);
+        }
+
+        public async Task<IEnumerable<PointDto>> GetPointsAsync()
+        {
+            var allpaths = await _pathRepository.GetAllAsync();
+
+            var listOfPoints = new List<PointDto>();
+
+            foreach (var path in allpaths)
+            {
+                listOfPoints.Add(new PointDto { Name = path.FirstPoint });
+                listOfPoints.Add(new PointDto { Name = path.SecondPoint });
+            }
+            return listOfPoints.Distinct(new DistinctItemComparer());
         }
         public async Task<bool> CreatePathAsync(PathDto pathDto)
         {
