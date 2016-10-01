@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.AspNetCore.Mvc;
 using ShortestWayFinder.Web.Contracts;
+using ShortestWayFinder.Web.Exceptions;
 using ShortestWayFinder.Web.Models;
 
 namespace ShortestWayFinder.Web.Controllers
@@ -70,12 +71,12 @@ namespace ShortestWayFinder.Web.Controllers
                     return BadRequest(ModelState);
 
                 var result = await _pathService.GetShortestPathAsync(model);
-                if (result.Count == 0)
-                    return
-                        BadRequest(
-                            $"Points from {model.FirstPoint} to {model.SecondPoint} are not connected on the map! Please add connections");
 
-                return Ok(result[0]);
+                return Ok(result);
+            }
+            catch (PointsNotConnectedException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

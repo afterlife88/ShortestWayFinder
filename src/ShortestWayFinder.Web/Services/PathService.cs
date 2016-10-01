@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using ShortestWayFinder.Domain.DatabaseModels;
@@ -7,6 +7,7 @@ using ShortestWayFinder.Domain.GraphEntities;
 using ShortestWayFinder.Domain.Infrastructure.Algorithms;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using ShortestWayFinder.Web.Contracts;
+using ShortestWayFinder.Web.Exceptions;
 using ShortestWayFinder.Web.Models;
 
 namespace ShortestWayFinder.Web.Services
@@ -48,15 +49,18 @@ namespace ShortestWayFinder.Web.Services
             return true;
         }
 
-        public async Task<IList<List<PathDto>>> GetShortestPathAsync(ShortestPathRequestDto requestDto)
+        public async Task<IEnumerable<PathDto>> GetShortestPathAsync(ShortestPathRequestDto requestDto)
         {
             var getAllPaths = await _pathRepository.GetAllAsync();
 
             IShortestPath targt = new ShortestPathAlgorithm(Mapper.Map<IEnumerable<Path>, IEnumerable<Edge>>(getAllPaths));
            
             IList<List<Edge>> path = targt.GetShortestPath(requestDto.FirstPoint, requestDto.SecondPoint);
+            if (path.Count == 0)
+                throw new PointsNotConnectedException(
+                    $"Points from {requestDto.FirstPoint} to {requestDto.SecondPoint} are not connected on the map! Please add connections");
 
-            return Mapper.Map<IList<List<Edge>>, IList<List<PathDto>>>(path);
+            return Mapper.Map<IEnumerable<Edge>, IEnumerable<PathDto>>(path[0]);
 
         }
     }
