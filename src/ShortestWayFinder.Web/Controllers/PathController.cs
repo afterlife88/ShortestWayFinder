@@ -58,7 +58,10 @@ namespace ShortestWayFinder.Web.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        // POST api/path/shortestpath
 
+        [Route("shortestpath")]
+        [HttpPost]
         public async Task<IActionResult> GetShortestPath([FromBody] ShortestPathRequestDto model)
         {
             try
@@ -66,9 +69,13 @@ namespace ShortestWayFinder.Web.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var result = _pathService.GetShortestPathAsync(model);
+                var result = await _pathService.GetShortestPathAsync(model);
+                if (result.Count == 0)
+                    return
+                        BadRequest(
+                            $"Points from {model.FirstPoint} to {model.SecondPoint} are not connected on the map! Please add connections");
 
-                return Ok(result);
+                return Ok(result[0]);
             }
             catch (Exception ex)
             {
@@ -77,7 +84,7 @@ namespace ShortestWayFinder.Web.Controllers
         }
         // DELETE api/path/2
 
-        [Route("{id")]
+        [Route("{id}")]
         [HttpDelete]
         [ProducesResponseType(typeof(StatusCodeResult), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]

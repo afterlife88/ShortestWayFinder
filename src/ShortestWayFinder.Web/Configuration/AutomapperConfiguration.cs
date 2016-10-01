@@ -28,10 +28,13 @@ namespace ShortestWayFinder.Web.Configuration
                     .ForMember(dest => dest.Start, dto => dto.MapFrom(src => src.FirstPoint))
                     .ForMember(dest => dest.End, dto => dto.MapFrom(src => src.SecondPoint))
                     .ForMember(dest => dest.Cost, dto => dto.MapFrom(src => src.Time))
-                    .ReverseMap();
+                    .ReverseMap()
+                    .ForMember(dto => dto.FirstPoint, edge => edge.MapFrom(src => src.Start))
+                    .ForMember(dto => dto.SecondPoint, edge => edge.MapFrom(src => src.End))
+                    .ForMember(dto => dto.Time, edge => edge.MapFrom(src => src.Cost));
 
                 config.CreateMap<Path, Edge>()
-                   .ForMember(dest => dest.Start, dto => dto.MapFrom(src => src.FirstPoint))
+                    .ForMember(dest => dest.Start, dto => dto.MapFrom(src => src.FirstPoint))
                     .ForMember(dest => dest.End, dto => dto.MapFrom(src => src.SecondPoint))
                     .ForMember(dest => dest.Cost, dto => dto.MapFrom(src => src.EstimatingTime))
                     .ReverseMap();

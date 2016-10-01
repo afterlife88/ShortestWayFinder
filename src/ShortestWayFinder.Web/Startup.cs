@@ -41,6 +41,9 @@ namespace ShortestWayFinder.Web
             // Add MVC to the request pipeline.
             app.UseDeveloperExceptionPage();
             app.UseMvc();
+
+            // Recreate db's
+            databaseInitializer.Seed().GetAwaiter().GetResult();
         }
     }
 }
