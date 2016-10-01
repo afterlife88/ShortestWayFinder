@@ -24,7 +24,7 @@ namespace ShortestWayFinder.Web.ValidationAttributes
 
             if (string.Equals(value.ToString(), firstPointName.ToString(), StringComparison.CurrentCultureIgnoreCase))
             {
-                return new ValidationResult(this.FormatErrorMessage(validationContext.DisplayName));
+                return new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
             }
             return null;
         }

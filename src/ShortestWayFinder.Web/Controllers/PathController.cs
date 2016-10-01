@@ -63,6 +63,9 @@ namespace ShortestWayFinder.Web.Controllers
 
         [Route("shortestpath")]
         [HttpPost]
+        [ProducesResponseType(typeof(IEnumerable<PathDto>), 200)]
+        [ProducesResponseType(typeof(BadRequestResult), 400)]
+        [ProducesResponseType(typeof(InternalServerErrorResult), 500)]
         public async Task<IActionResult> GetShortestPath([FromBody] ShortestPathRequestDto model)
         {
             try

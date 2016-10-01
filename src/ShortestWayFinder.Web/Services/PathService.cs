@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using ShortestWayFinder.Domain.DatabaseModels;
@@ -15,7 +14,7 @@ namespace ShortestWayFinder.Web.Services
     public class PathService : IPathService
     {
         private readonly IPathRepository _pathRepository;
- 
+
 
         public PathService(IPathRepository pathRepository)
         {
@@ -54,14 +53,16 @@ namespace ShortestWayFinder.Web.Services
             var getAllPaths = await _pathRepository.GetAllAsync();
 
             IShortestPath targt = new ShortestPathAlgorithm(Mapper.Map<IEnumerable<Path>, IEnumerable<Edge>>(getAllPaths));
-           
+
             IList<List<Edge>> path = targt.GetShortestPath(requestDto.FirstPoint, requestDto.SecondPoint);
+
             if (path.Count == 0)
                 throw new PointsNotConnectedException(
                     $"Points from {requestDto.FirstPoint} to {requestDto.SecondPoint} are not connected on the map! Please add connections");
 
+            // Reverse just to return list in right sequence from first to second point through other points
+            path[0].Reverse();
             return Mapper.Map<IEnumerable<Edge>, IEnumerable<PathDto>>(path[0]);
-
         }
     }
 }
