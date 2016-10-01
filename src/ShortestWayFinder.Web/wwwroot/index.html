@@ -1,33 +1,24 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us" data-ng-app="app">
 <head>
   <title>Shortest Way Finder</title>
-  <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <!-- Custom Theme files -->
-  <!--theme-style-->
-  <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-  <link rel="stylesheet" href="css/chocolat.css" type="text/css">
-
-  <!--//theme-style-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="keywords" content="Trip Guide Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
+  <link href="lib/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="app/content/css/style.css" rel="stylesheet" type="text/css" media="all" />
   <link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body data-ng-controller="HomeController as vm">
   <div class="banner-section">
     <div class="container">
       <div class="banner-heder">
         <h3>
+          {{vm.blabla}}
           Shortest Way Finder
-          <span>Visit all beatiful places in Barcelona for limited time</span>
+          <span>Visit all beautiful places in Barcelona for limited time</span>
         </h3>
       </div>
       <div class="banner-grids">
@@ -80,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               <ul class="nav navbar-nav cl-effect-11">
                 <li class="active"><a href="#addPath" class="scroll">Add Path</a></li>
                 <li class="active"><a href="#allPaths" class="scroll">All existed paths </a></li>
-                <li class="active"><a href="" class="scroll">API Documentation </a></li>
+                <li class="active"><a href="http://www.google.com">API Documentation </a></li>
               </ul>
 
             </div><!-- /.navbar-collapse -->
@@ -94,13 +85,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="promotions" id="allPaths">
       <div class="container">
         <h2 class="tittle">All existed paths</h2>
-
       </div>
     </div>
-
-
-
-
     <!-- team -->
     <div class="team" id="addPath">
       <div class="container">
@@ -120,49 +106,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
   </div>
 
-  <a href="#" id="home" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-  <script src="js/jquery.min.js"></script>
-  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-  <!---->
-  <script src="js/bootstrap.min.js"></script>
-  <!---->
-  <script src="js/jquery.chocolat.js"></script>
-  <!--lightboxfiles-->
-  <script type="text/javascript">
-    $(function () {
-      $('.gallery a').Chocolat();
-    });
-  </script>
-  <!--script-->
-  <!--startsmothscrolling-->
-  <script type="text/javascript" src="js/move-top.js"></script>
-  <script type="text/javascript" src="js/easing.js"></script>
-  <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-      $(".scroll").click(function (event) {
-        event.preventDefault();
-        $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 800);
-      });
-    });
-  </script>
+  <!-- UI vendors -->
+  <script src="lib/jquery.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
 
-  <script src="js/modernizr.custom.97074.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      /*
-      var defaults = {
-          containerID: 'home', // fading element id
-        containerHoverID: 'toTopHover', // fading element hover id
-        scrollSpeed: 1200,
-        easingType: 'linear'
-      };
-      */
+  <!-- Angular vendors -->
+  <script src="lib/angular.min.js"></script>
+  <script src="lib/angular-route.min.js"></script>
 
-      $().UItoTop({ easingType: 'easeOutQuart' });
+  <!-- Angular app -->
+  <script src="app/app.js"></script>
+  <script src="app/app.routes.js"></script>vm.blabla
+  <script src="app/controllers/home.controller.js"></script>
 
-    });
-  </script>
-
-  <script src="../app/main.js"></script>
+<!-- Other js utils -->
+  <script src="app/content/js/utils.js"></script>
 </body>
 </html>

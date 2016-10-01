@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore.Internal;
 using ShortestWayFinder.Domain.DatabaseModels;
 using ShortestWayFinder.Domain.GraphEntities;
 using ShortestWayFinder.Domain.Infrastructure.Algorithms;
@@ -29,20 +28,6 @@ namespace ShortestWayFinder.Web.Services
 
             return Mapper.Map<IEnumerable<Path>, IEnumerable<PathDto>>(paths);
         }
-
-        public async Task<IEnumerable<PointDto>> GetPointsAsync()
-        {
-            var allpaths = await _pathRepository.GetAllAsync();
-
-            var listOfPoints = new List<PointDto>();
-
-            foreach (var path in allpaths)
-            {
-                listOfPoints.Add(new PointDto { Name = path.FirstPoint });
-                listOfPoints.Add(new PointDto { Name = path.SecondPoint });
-            }
-            return listOfPoints.Distinct(new DistinctItemComparer());
-        }
         public async Task<bool> CreatePathAsync(PathDto pathDto)
         {
 
@@ -64,7 +49,6 @@ namespace ShortestWayFinder.Web.Services
             await _pathRepository.RemoveAsync(getPathItem);
             return true;
         }
-
         public async Task<IEnumerable<PathDto>> GetShortestPathAsync(ShortestPathRequestDto requestDto)
         {
             var getAllPaths = await _pathRepository.GetAllAsync();
@@ -80,6 +64,19 @@ namespace ShortestWayFinder.Web.Services
             // Reverse just to return list in right sequence from first to second point through other points
             path[0].Reverse();
             return Mapper.Map<IEnumerable<Edge>, IEnumerable<PathDto>>(path[0]);
+        }
+        public async Task<IEnumerable<PointDto>> GetPointsAsync()
+        {
+            var allpaths = await _pathRepository.GetAllAsync();
+
+            var listOfPoints = new List<PointDto>();
+
+            foreach (var path in allpaths)
+            {
+                listOfPoints.Add(new PointDto { Name = path.FirstPoint });
+                listOfPoints.Add(new PointDto { Name = path.SecondPoint });
+            }
+            return listOfPoints.Distinct(new DistinctItemComparer());
         }
     }
 }
