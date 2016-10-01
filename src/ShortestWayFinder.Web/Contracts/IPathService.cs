@@ -9,5 +9,6 @@ namespace ShortestWayFinder.Web.Contracts
         Task<bool> CreatePathAsync(PathDto pathDto);
         Task<IEnumerable<PathDto>> GetAllExistedPathsAsync();
         Task<bool> RemovePathAsync(int id);
+        Task<IList<List<PathDto>>> GetShortestPathAsync(ShortestPathRequestDto requestDto);
     }
 }

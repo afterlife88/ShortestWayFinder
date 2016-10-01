@@ -59,11 +59,29 @@ namespace ShortestWayFinder.Web.Controllers
             }
         }
 
+        public async Task<IActionResult> GetShortestPath([FromBody] ShortestPathRequestDto model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                var result = _pathService.GetShortestPathAsync(model);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         // DELETE api/path/2
 
         [Route("{id")]
         [HttpDelete]
         [ProducesResponseType(typeof(StatusCodeResult), 200)]
+        [ProducesResponseType(typeof(NotFoundResult), 404)]
+        [ProducesResponseType(typeof(InternalServerErrorResult), 500)]
         public async Task<IActionResult> RemovePath(int id)
         {
             try
