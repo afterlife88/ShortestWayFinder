@@ -5,6 +5,7 @@ using ShortestWayFinder.Domain;
 using ShortestWayFinder.Domain.Infrastructure.Configuration;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using ShortestWayFinder.Domain.Infrastructure.Repositories;
+using ShortestWayFinder.Web.Configuration;
 using ShortestWayFinder.Web.Contracts;
 using ShortestWayFinder.Web.Services;
 
@@ -32,6 +33,8 @@ namespace ShortestWayFinder.Web
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowAnyOrigin());
+
+            AutomapperConfiguration.Load();
 
             // Add MVC to the request pipeline.
             app.UseDeveloperExceptionPage();
