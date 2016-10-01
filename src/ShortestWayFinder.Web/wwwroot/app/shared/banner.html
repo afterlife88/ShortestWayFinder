@@ -1,36 +1,26 @@
-﻿
-  <div class="container">
-    <div class="banner-heder">
-      <h3>
+﻿<div class="container">
+  <div class="banner-heder">
+    <h3>
 
-        Shortest Way Finder
-        <span>Visit all beautiful places in Barcelona for limited time</span>
-      </h3>
-    </div>
-    <div class="banner-grids">
+      Shortest Way Finder
+      <span>Visit all beautiful places in Barcelona for limited time</span>
+    </h3>
+  </div>
+  <div class="banner-grids">
+    <form name="userForm" ng-submit='vm.getShortestPath(vm.shortestPathData)'>
       <div class="col-md-4 banner-grid">
-        <select class="sel">
-          <option value="">Point A</option>
-          <option value="">Czech Republic</option>
-          <option value="">France</option>
-          <option value="">germany</option>
-          <option value="">Italy</option>
-        </select>
+        <select class="sel" ng-init="vm.shortestPathData.FirstPoint = vm.points[0].name"
+                ng-model="vm.shortestPathData.FirstPoint" ng-options="o.name as o.name for o in vm.points"></select>
       </div>
       <div class="col-md-4 banner-grid">
-        <select class="sel">
-          <option value="">Point B</option>
-          <option value="">Hilton</option>
-          <option value="">Orange county</option>
-          <option value="">Sheraton</option>
-        </select>
+        <select class="sel" ng-init="vm.shortestPathData.SecondPoint = vm.points[0].name"
+                ng-model="vm.shortestPathData.SecondPoint" ng-options="o.name as o.name for o in vm.points"></select>
       </div>
       <div class="col-md-4 search">
-        <form action="#" method="post">
-          <input type="submit" value="Get shortest path">
-        </form>
+        <input type="submit" value="Get shortest path">
       </div>
       <div class="clearfix"></div>
-    </div>
-
+    </form>
   </div>
+
+</div>

@@ -25,7 +25,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Configuration
 
             var paths = new[]
            {
-                 new Path{FirstPoint="o",SecondPoint="a",EstimatingTime=2},
+                 new Path{FirstPoint="Open",SecondPoint="a",EstimatingTime=2},
                  new Path{FirstPoint="o",SecondPoint="b",EstimatingTime=5},
                  new Path{FirstPoint="o",SecondPoint="c",EstimatingTime=4},
 
