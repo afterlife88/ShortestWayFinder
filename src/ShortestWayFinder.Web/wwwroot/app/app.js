@@ -1,11 +1,13 @@
 ﻿// Angular module for the application
 angular.module('app', [
   'ngRoute',
-  'angularSpinner'
+  'angularSpinner',
+  'xeditable'
 ]);
 
 angular.module('app').run([
-  '$rootScope', '$location',
-  function ($rootScope, $location) {
+  'editableOptions',
+  function (editableOptions) {
+    editableOptions.theme = 'bs3';
   }
 ]);

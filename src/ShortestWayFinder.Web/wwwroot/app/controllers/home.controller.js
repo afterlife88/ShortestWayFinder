@@ -9,15 +9,13 @@
 
     var vm = this;
     vm.points = [];
-    vm.errorMsg = '';
+    vm.allPaths = [];
     vm.shortestPathData = {};
-
     vm.getShortestPath = getShortestPath;
 
     getPoints();
-
+    getPaths();
     function getPoints() {
-      vm.errorMsg = '';
       return PathService.getPoints().then(function (response) {
         vm.points = response;
       }).catch(function (err) {
@@ -38,8 +36,33 @@
         //}
       });
     }
-    function getShortestPath(data) {
 
+    function getPaths() {
+      return PathService.getAllPaths()
+        .then(function (response) {
+          vm.allPaths = response;
+          console.log(vm.allPaths);
+        })
+        .catch(function (err) {
+          console.log(err);
+          //switch (err.status) {
+          //  case 400:
+          //    vm.errorMsg = 'Some values are invalid!';
+          //    break;
+          //  case 401:
+          //    vm.errorMsg = 'Auth token are missing!';
+          //    break;
+          //  case 500:
+          //    vm.erorMsg = err.data;
+          //    break;
+          //  default:
+          //    vm.errorMsg = 'Something wrong...';
+          //    break;
+          //}
+        });
+    }
+
+    function getShortestPath(data) {
       return PathService.getShortestPath(data).then(function (response) {
         console.log(response);
       }).catch(function (err) {

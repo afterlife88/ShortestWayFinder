@@ -187,9 +187,7 @@ h2.tittle {
 .allPaths span {
     text-align: center;
     display: block;
-    font-size: 1.4em;
-    margin-top: 0.5em;
-    color: #777;
+    color: black;
 }
 .promation-grid p {
     font-size: 1em;
@@ -647,11 +645,9 @@ h3.tittle1 {
     background: none;
     width: 89%;
     outline: none;
-    border: none;
     padding: 0.97em 0.8em;
     font-size: 1em;
-    color: #999;
-    float: left;
+ 
     border-right: 1px solid #ADADAD;
 }
 .grid-contact-in textarea{
@@ -1268,4 +1264,10 @@ h3.tittle1 {
 .google-map iframe {
     height: 200px;
 }
+}
+div[ng-app] { margin: 10px; }
+.table {width: 100% }
+form[editable-form] > div {margin: 10px 0;}
+.table td {
+   text-align: center;   
 }

@@ -9,15 +9,15 @@
   <div class="banner-grids">
     <form name="userForm" ng-submit='vm.getShortestPath(vm.shortestPathData)'>
       <div class="col-md-4 banner-grid">
-        <select class="sel" ng-init="vm.shortestPathData.FirstPoint = vm.points[0].name"
+        <select required class="sel" ng-init="vm.shortestPathData.FirstPoint = vm.points[0].name"
                 ng-model="vm.shortestPathData.FirstPoint" ng-options="o.name as o.name for o in vm.points"></select>
       </div>
       <div class="col-md-4 banner-grid">
-        <select class="sel" ng-init="vm.shortestPathData.SecondPoint = vm.points[0].name"
+        <select required class="sel" ng-init="vm.shortestPathData.SecondPoint = vm.points[0].name"
                 ng-model="vm.shortestPathData.SecondPoint" ng-options="o.name as o.name for o in vm.points"></select>
       </div>
       <div class="col-md-4 search">
-        <input type="submit" value="Get shortest path">
+        <input type="submit" value="Find shortest path">
       </div>
       <div class="clearfix"></div>
     </form>

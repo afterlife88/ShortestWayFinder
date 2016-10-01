@@ -1,3 +1,48 @@
 ﻿<div class="container">
   <h2 class="tittle">All existed paths</h2>
+  <div class="contact-grids">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <tr style="font-weight: bold">
+          <td style="width:25%">First Point</td>
+          <td style="width:25%">Second Point</td>
+          <td style="width:20%">Time</td>
+          <td style="width:30%">Edit</td>
+        </tr>
+        <tr ng-repeat="path in vm.allPaths">
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="path.firstPoint" e-name="firstPoint" e-form="rowform">
+              {{ path.firstPoint || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="path.secondPoint" e-name="secondPoint" e-form="rowform">
+              {{ path.secondPoint || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <span editable-text="path.time" e-name="time" e-form="rowform">
+              {{ path.time || 'empty' }}
+            </span>
+          </td>
+          <td style="white-space: nowrap">
+            <!-- form -->
+            <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == path">
+              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                save
+              </button>
+              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                cancel
+              </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+              <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+              <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>

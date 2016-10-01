@@ -9,7 +9,8 @@
 
     var pathService = {
       getPoints: getPoints,
-      getShortestPath: getShortestPath
+      getShortestPath: getShortestPath,
+      getAllPaths: getAllPaths
     };
 
     return pathService;
@@ -25,6 +26,7 @@
           return $q.reject(data);
         });
     }
+
     function getShortestPath(data) {
       spinnerService.showSpinner();
       return $http.post('api/path/shortestpath', data)
@@ -37,6 +39,17 @@
       });
     }
 
+    function getAllPaths() {
+      spinnerService.showSpinner();
+      return $http.get('api/path')
+      .then(function (response) {
+        spinnerService.hideSpinner();
+        return response.data;
+      }).catch(function (data) {
+        spinnerService.hideSpinner();
+        return $q.reject(data);
+      });
+    }
     //function update(user, token) {
     //  spinner.showWait();
     //  return $http.put('api/user/update', user, {
