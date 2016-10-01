@@ -148,7 +148,7 @@ div#bs-example-navbar-collapse-1 {
     color: #fff;
     padding: .4em;
 }
-.promotions {
+.allPaths {
     padding: 5em 0;
     background: #F6F9FD;
 }
@@ -184,7 +184,7 @@ h2.tittle {
     width: 50%;
     padding: 1em;
 }
-.promotions span {
+.allPaths span {
     text-align: center;
     display: block;
     font-size: 1.4em;
@@ -389,15 +389,15 @@ h3.tittle {
   text-align: center;
 }
 /*gallery*/
-/*-- team --*/
-.team_gds {
+/*-- addPath --*/
+.addPath_gds {
     margin-top: 4em;
 }
-.team {
+.addPath {
     padding: 5em 0;
 	    background: #F6F9FD;
 }
-.team_pos {
+.addPath_pos {
     position: relative;
     overflow: hidden;
     transition: all 0.3s linear 0s;
@@ -407,7 +407,7 @@ h3.tittle {
     -o-transition: all 0.3s linear 0s;
     margin: auto;
 }
-.team_gd1:hover .team_pos .team_back {
+.addPath_gd1:hover .addPath_pos .addPath_back {
     background: rgba(0,0,0,0.5);
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -416,7 +416,7 @@ h3.tittle {
     -ms-border-radius: 50%;
 	height:100%;
 }
-.team_pos .team_back {
+.addPath_pos .addPath_back {
     position: absolute;
     width: 100%;
     background: rgba(0,0,0,0);
@@ -430,7 +430,7 @@ h3.tittle {
     -o-transition: all 0.3s linear 0s;
     display: block;
 }
-.team_pos img {
+.addPath_pos img {
     transition: all 0.3s linear 0s;
     -moz-transition: all 0.3s linear 0s;
     -webkit-transition: all 0.3s linear 0s;
@@ -439,7 +439,7 @@ h3.tittle {
     width: 100%;
     border: 1px solid #B7B7B7;
 }
-.team_info {
+.addPath_info {
     position: absolute;
     width: 100%;
     top: 42%;
@@ -447,7 +447,7 @@ h3.tittle {
     left: 0;
     z-index: 9999;
 }
-.team_info a {
+.addPath_info a {
     display: inline-block;
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -467,7 +467,7 @@ h3.tittle {
     -ms-transition: all 0.3s linear 0.2s;
     -o-transition: all 0.3s linear 0.2s;
 }
-.team_info a:before {
+.addPath_info a:before {
     content: "";
     left: 0;
     opacity: 1;
@@ -485,7 +485,7 @@ h3.tittle {
     -o-transition: all 0.3s linear 0s;
     width: 100%;
 }
-.team_info a i.fc1 {
+.addPath_info a i.fc1 {
     background: url(../images/social2.png) no-repeat -41px 1px #3b5998;
     width: 45px;
     height: 45px;
@@ -496,7 +496,7 @@ h3.tittle {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-.team_info a i.fc2 {
+.addPath_info a i.fc2 {
     background: url(../images/social2.png) no-repeat 1px 1px #55acee;
     width: 45px;
     height: 45px;
@@ -507,7 +507,7 @@ h3.tittle {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-.team_info a i.fc3 {
+.addPath_info a i.fc3 {
     background:url(../images/social2.png) no-repeat -80px 1px #dc4e41;
     width: 45px;
     height: 45px;
@@ -518,7 +518,7 @@ h3.tittle {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
 }
-.team_info a:after {
+.addPath_info a:after {
     content: "";
     left: 0;
     opacity: 1;
@@ -536,35 +536,35 @@ h3.tittle {
     -o-transition: all 0.3s linear 0.1s;
     width: 100%;
 }
-.team_gd1:hover .team_pos img {
+.addPath_gd1:hover .addPath_pos img {
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     -o-border-radius: 50%;
     -ms-border-radius: 50%;
 }
-.team_gd1:hover .team_info a {
+.addPath_gd1:hover .addPath_info a {
     transform: scale(1) rotate(0deg);
     -moz-transform: scale(1) rotate(0deg);
     -webkit-transform: scale(1) rotate(0deg);
     -ms-transform: scale(1) rotate(0deg);
     -o-transform: scale(1) rotate(0deg);
 }
-.team_info a:hover {
+.addPath_info a:hover {
     opacity: 0.8;
 }
-.team_gd1 h4{
+.addPath_gd1 h4{
 	text-align:center;
 	font-size:1.5em;
 	color:#007ea3;
 	margin:25px 0 7px;
 }
-.team_gd1 p {
+.addPath_gd1 p {
     text-align: center;
     font-size: 1em;
 	    line-height: 2em;
 }
-.team_gd1 span {
+.addPath_gd1 span {
     text-align: center;
     font-size: 1em;
 	margin:0 0 0.5em 0;
@@ -618,7 +618,7 @@ h3.tittle1 {
     padding: 15px;
     border-bottom: 1px solid #FFFFFF;
 }
-/*-- //team --*/
+/*-- //addPath --*/
 /*--contact--*/
 .your-top {
   border: 1px solid #ADADAD;
@@ -758,7 +758,7 @@ h3.tittle1 {
 .banner-grid {
     padding: 0 2px;
 }
-.promation-grid p,.about-grid1 p,.featured-grd p,.team_gd1 p,.news-grid p,.news-gr p {
+.promation-grid p,.about-grid1 p,.featured-grd p,.addPath_gd1 p,.news-grid p,.news-gr p {
     font-size: .96em;
 }
 h2.tittle {
@@ -812,7 +812,7 @@ h3.tittle {
 .promation-grid h4 {
     font-size: 1.3em;
 }
-.promotions,.about-section,.gallery,.team,.news,.contact {
+.allPaths,.about-section,.gallery,.addPath,.news,.contact {
     padding: 4em 0;
 }
 .about-grid {
@@ -841,21 +841,21 @@ h3.tittle {
 .da-thumbs li a div h5 {
     margin: 2.3em 0 0 0;
  }
-.team_gd1 {
+.addPath_gd1 {
     float: left;
     width: 25%;
 }
-.team_info a i.fc1 {
+.addPath_info a i.fc1 {
     background: url(../images/social2.png) no-repeat -46px -3px #3b5998;
     width: 36px;
     height: 36px;
 }
-.team_info a i.fc2 {
+.addPath_info a i.fc2 {
     background: url(../images/social2.png) no-repeat -3px -3px #55acee;
     width: 36px;
     height: 36px;
 }
-.team_info a i.fc3 {
+.addPath_info a i.fc3 {
     background: url(../images/social2.png) no-repeat -84px -3px #dc4e41;
     width: 36px;
     height: 36px;
@@ -930,10 +930,10 @@ h3.tittle {
 h2.tittle {
     font-size: 2.8em;
 }
-.promotions span {
+.allPaths span {
     font-size: 1.2em;
 }
-.promotion-grids, .about-grids,.gallery-grids,.contact-grids,.news-grids,.team_gds {
+.promotion-grids, .about-grids,.gallery-grids,.contact-grids,.news-grids,.addPath_gds {
     margin-top: 3em;
 }	
 }
@@ -941,14 +941,14 @@ h2.tittle {
 .da-thumbs li a div h5 {
     margin: 2em 0 0 0;
 }
-.team_gd1 {
+.addPath_gd1 {
     float: left;
     width: 50%;
 }
-.team_gd1:nth-child(3),.team_gd1:nth-child(4) {
+.addPath_gd1:nth-child(3),.addPath_gd1:nth-child(4) {
     margin-top: 2em;
 }
-.team_info {
+.addPath_info {
     top: 45%;
 }
 .news-grid h4 {
@@ -957,7 +957,7 @@ h2.tittle {
 .contact-grids input[type="text"] {
     width: 83%;
 }
-.promotions, .about-section, .gallery, .team, .news, .contact {
+.allPaths, .about-section, .gallery, .addPath, .news, .contact {
     padding: 3em 0;
 }
 .about-grid {
@@ -1067,7 +1067,7 @@ h3.tittle {
 .banner-heder h3 {
     line-height: 1.5em;
 }
-.promotion-grids, .about-grids, .gallery-grids, .contact-grids, .news-grids, .team_gds {
+.promotion-grids, .about-grids, .gallery-grids, .contact-grids, .news-grids, .addPath_gds {
     margin-top: 2em;
 }
 .promation-grid {
@@ -1136,7 +1136,7 @@ h3.tittle {
     position: relative;
     width: 49%;
 }
-.promotion-grids, .about-grids, .gallery-grids, .contact-grids, .news-grids,.team_gds {
+.promotion-grids, .about-grids, .gallery-grids, .contact-grids, .news-grids,.addPath_gds {
     margin-top: 2em;
 }
 .featured-grids {
@@ -1145,7 +1145,7 @@ h3.tittle {
 .da-thumbs li a div h5 {
     margin: 2.2em 0 0 0;
 }
-.team_gd1 h4 {
+.addPath_gd1 h4 {
     margin: 10px 0 7px;
 }
 .grid-contact {
@@ -1172,10 +1172,10 @@ h3.tittle {
 h3.tittle1 {
     font-size: 2em;
 }
-.promotions, .about-section, .gallery, .team, .news, .contact {
+.allPaths, .about-section, .gallery, .addPath, .news, .contact {
     padding: 2em 0;
 }
-.team_info {
+.addPath_info {
     left: -3px;
 }
 .about-left {
@@ -1203,7 +1203,7 @@ h3.tittle1 {
 .banner-heder {
     margin: 3em 0 1em;
 }
-.promotions span {
+.allPaths span {
     font-size: 1em;
 }
 .about-left {
@@ -1217,7 +1217,7 @@ h3.tittle1 {
 .da-thumbs li a div h5 {
     margin: 2em 0 0 0;
 }
-.team_info {
+.addPath_info {
     top: 43%;
     left: -3px;
 }
@@ -1226,16 +1226,16 @@ h3.tittle1 {
 }
 }
 @media(max-width:375px){
-.team_gd1 {
+.addPath_gd1 {
     width: 100%;
 }
-.team_gd1:nth-child(2) {
+.addPath_gd1:nth-child(2) {
     margin-top: 2em;
 }
 .contact-grids input[type="text"] {
     width: 84%;
 }
-.team_info {
+.addPath_info {
     top: 46%;
     left: -3px;
 }	
@@ -1250,7 +1250,7 @@ h3.tittle1 {
 .search {
     width: 57%;
 }
-.promation-grid,.about-grid,.about-grid1,.featured-grid,.news-grid,.team_gd1,.grid-contact,.grid-contact-in {
+.promation-grid,.about-grid,.about-grid1,.featured-grid,.news-grid,.addPath_gd1,.grid-contact,.grid-contact-in {
     padding: 0;
 }
 .da-thumbs li {

@@ -1,6 +1,7 @@
 ﻿// Angular module for the application
 angular.module('app', [
-  'ngRoute'
+  'ngRoute',
+  'angularSpinner'
 ]);
 
 angular.module('app').run([

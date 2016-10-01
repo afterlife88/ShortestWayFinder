@@ -3,7 +3,7 @@
 
   angular.module('app').controller('HomeController', HomeController);
 
-  //HomeController.$inject = [''];
+  //HomeController.$inject = ['spinnerService'];
 
   function HomeController() {
 

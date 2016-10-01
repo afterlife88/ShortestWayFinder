@@ -4,107 +4,30 @@
   <title>Shortest Way Finder</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+  <link href="lib/loaders.min.css" rel="stylesheet" />
   <link href="lib/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
   <link href="app/content/css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="app/content/css/spinner.css" rel="stylesheet" />
   <link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
 
 </head>
 <body data-ng-controller="HomeController as vm">
-  <div class="banner-section">
-    <div class="container">
-      <div class="banner-heder">
-        <h3>
-          {{vm.blabla}}
-          Shortest Way Finder
-          <span>Visit all beautiful places in Barcelona for limited time</span>
-        </h3>
-      </div>
-      <div class="banner-grids">
-        <div class="col-md-4 banner-grid">
-          <select class="sel">
-            <option value="">Point A</option>
-            <option value="">Czech Republic</option>
-            <option value="">France</option>
-            <option value="">germany</option>
-            <option value="">Italy</option>
-          </select>
-        </div>
-        <div class="col-md-4 banner-grid">
-          <select class="sel">
-            <option value="">Point B</option>
-            <option value="">Hilton</option>
-            <option value="">Orange county</option>
-            <option value="">Sheraton</option>
-          </select>
-        </div>
-        <div class="col-md-4 search">
-          <form action="#" method="post">
-            <input type="submit" value="Get shortest path">
-          </form>
-        </div>
-        <div class="clearfix"></div>
-      </div>
+  <span spinner-on="spinnerShown" us-spinner="{radius:30, width:8, length: 16}"></span>
+  <!-- Banner with target points -->
+  <div class="banner-section" data-ng-include="'app/shared/banner.html'"></div>
+  <!-- Header -->
+  <div class="header" data-ng-include="'app/shared/header.html'"></div>
 
-    </div>
-  </div>
-  <div class="header">
-    <div class="container">
-      <div class="header-menu">
-        <nav class="navbar navbar-default">
-          <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <div class="navbar-brand logo">
-                <h1><a href="index.html"><span>Shortest</span> Way Finder</a></h1>
-              </div>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul class="nav navbar-nav cl-effect-11">
-                <li class="active"><a href="#addPath" class="scroll">Add Path</a></li>
-                <li class="active"><a href="#allPaths" class="scroll">All existed paths </a></li>
-                <li class="active"><a href="http://www.google.com">API Documentation </a></li>
-              </ul>
-
-            </div><!-- /.navbar-collapse -->
-          </div><!-- /.container-fluid -->
-        </nav>
-        <div class="clearfix"></div>
-      </div>
-    </div>
-  </div>
   <div class="content">
-    <div class="promotions" id="allPaths">
-      <div class="container">
-        <h2 class="tittle">All existed paths</h2>
-      </div>
-    </div>
-    <!-- team -->
-    <div class="team" id="addPath">
-      <div class="container">
-        <h2 class="tittle">Add path</h2>
-
-      </div>
-    </div>
-    <!--team-->
+    <!-- All paths -->
+    <div class="allPaths" id="allPaths" data-ng-include="'app/shared/allPaths.html'"></div>
+    <!-- Add Path -->
+    <div class="addPath" id="addPath" data-ng-include="'app/shared/addPath.html'"> </div>
   </div>
 
   <!--footer-->
-  <div class="copy-section">
-    <div class="container">
-      <div class="footer-top">
-        <p>&copy; 2016. it-challenges</p>
-      </div>
-    </div>
-  </div>
+  <div class="copy-section" data-ng-include="'app/shared/footer.html'"></div>
 
   <!-- UI vendors -->
   <script src="lib/jquery.min.js"></script>
@@ -113,13 +36,16 @@
   <!-- Angular vendors -->
   <script src="lib/angular.min.js"></script>
   <script src="lib/angular-route.min.js"></script>
+  <script src="lib/spin.min.js"></script>
+  <script src="lib/angular-spinner.min.js"></script>
 
   <!-- Angular app -->
   <script src="app/app.js"></script>
-  <script src="app/app.routes.js"></script>vm.blabla
+  <script src="app/app.routes.js"></script>
   <script src="app/controllers/home.controller.js"></script>
-
-<!-- Other js utils -->
+  <script src="app/services/pathService.js"></script>
+  <script src="app/services/spinnerService.js"></script>
+  <!-- Other js utils -->
   <script src="app/content/js/utils.js"></script>
 </body>
 </html>

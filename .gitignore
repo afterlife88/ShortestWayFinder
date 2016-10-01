@@ -242,5 +242,3 @@ _Pvt_Extensions
 *.sln.iml
 
 TestResults/
-
-lib/
