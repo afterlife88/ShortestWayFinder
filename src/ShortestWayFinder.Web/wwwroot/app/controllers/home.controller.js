@@ -76,20 +76,21 @@
         console.log(response);
       }).catch(function (err) {
         console.log(err);
-        //switch (err.status) {
-        //  case 400:
-        //    vm.errorMsg = 'Some values are invalid!';
-        //    break;
-        //  case 401:
-        //    vm.errorMsg = 'Auth token are missing!';
-        //    break;
-        //  case 500:
-        //    vm.erorMsg = err.data;
-        //    break;
-        //  default:
-        //    vm.errorMsg = 'Something wrong...';
-        //    break;
-        //}
+        switch (err.status) {
+          case 400:
+            if (err.data.SecondPoint !== undefined) {
+              Alertify.error(err.data.SecondPoint[0]);
+            } else {
+              Alertify.error(err.data);
+            }
+            break;
+          case 500:
+            Alertify.error(err.data);
+            break;
+          default:
+            Alertify.error('Something wrong...');
+            break;
+        }
       });
     }
 
@@ -97,9 +98,8 @@
       return PathService.addPath(data).then(function () {
         vm.addPathData = {};
         Alertify.success('Path added successfully!');
-
-        renderGraph();
         getPoints();
+        getPaths();
       }).catch(function (err) {
         console.log(err);
         //switch (err.status) {
