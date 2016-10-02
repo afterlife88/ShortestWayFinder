@@ -14,11 +14,12 @@
     vm.shortestPathData = {};
     vm.addPathData = {};
     vm.backgroundColorShortestPath = '';
+    vm.showResultOfShortestPath = false;
     vm.resultShortPath = {
       estimatedTime: 0,
       path: []
     }
-    vm.showResultOfShortestPath = false;
+
 
     vm.getShortestPath = getShortestPath;
     vm.editPath = editPath;
@@ -34,21 +35,7 @@
       return PathService.getPoints().then(function (response) {
         vm.points = response;
       }).catch(function (err) {
-        console.log(err);
-        //switch (err.status) {
-        //  case 400:
-        //    vm.errorMsg = 'Some values are invalid!';
-        //    break;
-        //  case 401:
-        //    vm.errorMsg = 'Auth token are missing!';
-        //    break;
-        //  case 500:
-        //    vm.erorMsg = err.data;
-        //    break;
-        //  default:
-        //    vm.errorMsg = 'Something wrong...';
-        //    break;
-        //}
+        Alertify.error(err.data);
       });
     }
 
@@ -76,7 +63,6 @@
           arrNodes.push(item.secondPoint);
           vm.resultShortPath.estimatedTime += item.time;
         });
-
 
         vm.resultShortPath.path = response;
         vm.showResultOfShortestPath = true;
@@ -140,25 +126,22 @@
         getPoints();
       }).catch(function (err) {
         console.log(err);
-        //switch (err.status) {
-        //  case 400:
-        //    vm.errorMsg = 'Some values are invalid!';
-        //    break;
-        //  case 401:
-        //    vm.errorMsg = 'Auth token are missing!';
-        //    break;
-        //  case 500:
-        //    vm.erorMsg = err.data;
-        //    break;
-        //  default:
-        //    vm.errorMsg = 'Something wrong...';
-        //    break;
-        //}
+        switch (err.status) {
+          case 404:
+            Alertify.error('Requested path not found!');
+            break;
+          case 500:
+            Alertify.error(err.data);
+            break;
+          default:
+            Alertify.error('Something wrong...');
+            break;
+        }
       });
     }
+
+
     function renderShortestPathGraph(arrNodes, arrPath) {
-
-
       if (sigmaShortestPathGraph !== undefined)
         sigmaShortestPathGraph.kill();
 
@@ -212,8 +195,7 @@
           defaultEdgeHoverColor: 'white',
           edgeHoverExtremities: true,
           edgeHoverSizeRatio: 1,
-          doubleClickEnabled: false,
-
+          doubleClickEnabled: false
         }
       });
       sigmaShortestPathGraph.refresh();
@@ -260,8 +242,8 @@
           g.nodes.push({
             id: item.name,
             label: item.name,
-            x: Math.cos(i * 2 * Math.PI / vm.points.length * 100),
-            y: Math.sin(i * 2 * Math.PI / vm.points.length * 100),
+            x: Math.cos(i * 2 * Math.PI / vm.points.length),
+            y: Math.sin(i * 2 * Math.PI / vm.points.length),
 
             size: 1.5,
             color: '#062f3c'
