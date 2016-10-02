@@ -2,7 +2,8 @@
 angular.module('app', [
   'ngRoute',
   'angularSpinner',
-  'xeditable'
+  'xeditable',
+  'Alertify'
 ]);
 
 angular.module('app').run([

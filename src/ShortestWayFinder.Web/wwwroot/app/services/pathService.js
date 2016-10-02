@@ -11,7 +11,8 @@
       getPoints: getPoints,
       getShortestPath: getShortestPath,
       getAllPaths: getAllPaths,
-      removePath: removePath
+      removePath: removePath,
+      addPath: addPath
     };
 
     return pathService;
@@ -52,6 +53,17 @@
     function removePath(id) {
       spinnerService.showSpinner();
       return $http.delete('api/path/' + id).then(function (response) {
+        spinnerService.hideSpinner();
+        return response.data;
+      }).catch(function (data) {
+        spinnerService.hideSpinner();
+        return $q.reject(data);
+      });
+    }
+
+    function addPath(data) {
+      spinnerService.showSpinner();
+      return $http.post('api/path/add', data).then(function(response) {
         spinnerService.hideSpinner();
         return response.data;
       }).catch(function (data) {

@@ -1,20 +1,21 @@
 ﻿<div class="container">
   <h2 class="tittle">Add path</h2>
   <div class="contact-grids">
-    <form action="#" method="post">
+    <form name="userForm" ng-submit='vm.addPath(vm.addPathData)'>
       <div class="col-md-3 grid-contact">
         <div class="your-top">
-          <input type="text" name="Name" placeholder="First point" required>
+          <input type="text" name="Name" placeholder="First point" required data-ng-model="vm.addPathData.FirstPoint" >
         </div>
       </div>
       <div class="col-md-3 grid-contact">
         <div class="your-top">
-          <input type="text" name="Website" placeholder="Second point" required>
+          <input type="text" name="Website" placeholder="Second point" required data-ng-model="vm.addPathData.SecondPoint">
         </div>
       </div>
       <div class="col-md-3 grid-contact">
         <div class="your-top">
-          <input type="text" name="Time" placeholder="Time to travel" required>
+          <input type="text" name="Time" placeholder="Time to travel (in minutes)" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required
+                 data-ng-model="vm.addPathData.Time">
         </div>
       </div>
       <div class="col-md-3 grid-contact-in">
