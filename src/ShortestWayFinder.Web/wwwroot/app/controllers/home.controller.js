@@ -89,10 +89,9 @@
       console.log(data, id);
     }
     function removePath(id, item) {
-      return PathService.removePath(id).then(function (response) {
+      return PathService.removePath(id).then(function () {
         var index = vm.allPaths.indexOf(item);
         vm.allPaths.splice(index, 1);
-        console.log(vm.allPaths);
       }).catch(function (err) {
         console.log(err);
         //switch (err.status) {

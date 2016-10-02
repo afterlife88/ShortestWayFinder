@@ -618,9 +618,7 @@ h3.tittle1 {
 }
 /*-- //addPath --*/
 /*--contact--*/
-.your-top {
-  border: 1px solid #ADADAD;
-}
+
 .contact-grids{
 	margin-top:4em;
 }
@@ -661,7 +659,7 @@ h3.tittle1 {
 }
 .grid-contact-in input[type="submit"] {
   width: 100%;
-  font-size: 1.1em;
+  font-size: 1.3em;
   background:  #062f3c;
   padding: 0.7em 1em;
   text-align: center;
