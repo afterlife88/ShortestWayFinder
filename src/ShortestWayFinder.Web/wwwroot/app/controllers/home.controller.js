@@ -14,6 +14,12 @@
     vm.shortestPathData = {};
     vm.addPathData = {};
     vm.backgroundColorShortestPath = '';
+    vm.resultShortPath = {
+      estimatedTime: 0,
+      path: []
+    }
+    vm.showResultOfShortestPath = false;
+
     vm.getShortestPath = getShortestPath;
     vm.editPath = editPath;
     vm.removePath = removePath;
@@ -57,16 +63,23 @@
     }
 
     function getShortestPath(data) {
-
+      vm.resultShortPath = {
+        estimatedTime: 0,
+        path: []
+      }
       return PathService.getShortestPath(data).then(function (response) {
-
         vm.backgroundColorShortestPath = 'rgba(95, 109, 133, 0.8)';
-
         var arrNodes = [];
+
         response.forEach(function (item) {
           arrNodes.push(item.firstPoint);
           arrNodes.push(item.secondPoint);
+          vm.resultShortPath.estimatedTime += item.time;
         });
+
+
+        vm.resultShortPath.path = response;
+        vm.showResultOfShortestPath = true;
         renderShortestPathGraph(unique(arrNodes), response);
 
       }).catch(function (err) {
@@ -150,9 +163,8 @@
         sigmaShortestPathGraph.kill();
 
       var g = { nodes: [], edges: [] }
-      console.log(arrNodes);
+
       arrNodes.forEach(function (item, i) {
-        console.log(item);
         g.nodes.push({
           id: item,
           label: item,

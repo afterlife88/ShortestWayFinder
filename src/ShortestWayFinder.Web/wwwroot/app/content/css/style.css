@@ -1585,12 +1585,26 @@ form[editable-form] > div {
 
 
 .box-shortestpath {
-
     height: 200px;
     overflow: auto;
     margin: 12px 0;
     text-align: left;
 }
+
 .colorEdge {
-  color:white
+    color: white;
 }
+
+.result {
+    background: rgba(95, 109, 133, 0.8);
+    padding: 2em;
+    overflow: auto;
+    margin: 12px 0;
+    text-align: left;
+}
+
+    .result p {
+        color: #fff;
+        font-weight: 500;
+        font-size: 120%;
+    }

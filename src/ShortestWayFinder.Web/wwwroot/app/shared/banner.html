@@ -22,14 +22,28 @@
       <div class="clearfix"></div>
     </form>
   </div>
-</div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="box-shortestpath" ng-style="{'background-color': vm.backgroundColorShortestPath}">
-          <div id="shortestPath-graph-container"></div>
-        </div>
+</div>
+<div class="container" ng-if="vm.showResultOfShortestPath">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="result">
+        <p>Total time (in minutes): {{vm.resultShortPath.estimatedTime}}</p>
+        <p>Shortest path: </p>
+        <p ng-repeat="item in vm.resultShortPath.path">
+          From the {{item.firstPoint}} to {{item.secondPoint}} for the {{item.time}} minutes
+        </p>
       </div>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-shortestpath" ng-style="{'background-color': vm.backgroundColorShortestPath}">
+        <div id="shortestPath-graph-container"></div>
+      </div>
+    </div>
+  </div>
+</div>

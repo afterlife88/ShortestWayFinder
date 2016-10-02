@@ -42,6 +42,7 @@ namespace ShortestWayFinder.Domain.Infrastructure.Repositories
                       r =>
                           string.Equals(r.FirstPoint, secondPointName, StringComparison.CurrentCultureIgnoreCase) &&
                           string.Equals(r.SecondPoint, firstPointName, StringComparison.CurrentCultureIgnoreCase));
+
             if (firstSecond != null | secondFirst != null)
                 return firstSecond ?? secondFirst;
             return null;
