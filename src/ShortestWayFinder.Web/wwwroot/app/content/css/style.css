@@ -1269,3 +1269,10 @@ form[editable-form] > div {margin: 10px 0;}
 .table td {
    text-align: center;   
 }
+.box {
+        background-color: #ffffff;
+    border: 1px solid #e0ded7;
+    height: 560px;
+    overflow: auto;
+    margin: 12px 0;
+}

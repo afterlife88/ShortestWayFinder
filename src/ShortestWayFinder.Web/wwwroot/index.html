@@ -11,7 +11,13 @@
   <link href="lib/xeditable.min.css" rel="stylesheet" />
   <link href='//fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
   <link href='//fonts.googleapis.com/css?family=Open+Sans:400,800italic,800,700italic,700,600italic,600,400italic,300italic,300' rel='stylesheet' type='text/css'>
-
+  <style>
+    #graph-container {
+      width: 96%;
+      height: 560px;
+      position: absolute;
+    }
+  </style>
 </head>
 <body data-ng-controller="HomeController as vm">
   <span spinner-on="spinnerShown" us-spinner="{radius:30, width:8, length: 16}"></span>
@@ -25,6 +31,22 @@
     <div class="addPath" id="addPath" data-ng-include="'app/shared/addPath.html'"> </div>
     <!-- All paths -->
     <div class="allPaths" id="allPaths" data-ng-include="'app/shared/allPaths.html'"></div>
+    <div class="allPaths" id="graphView">
+      <h2 class="tittle">Existed paths in graph view</h2>
+      <div class="container" style="margin-top: 4em;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box">
+              <div id="graph-container"></div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
   </div>
 
   <!--footer-->
@@ -48,5 +70,14 @@
   <script src="app/services/spinnerService.js"></script>
   <!-- Other js utils -->
   <script src="app/content/js/utils.js"></script>
+
+  <!-- Render graph lib -->
+  <script src="lib/sigma/sigma.min.js"></script>
+  <script src="lib/sigma/plugins.min.js"></script>
+  <script src="lib/sigma/sigma.renderers.edgeLabels.min.js"></script>
+
+<script>
+  
+</script>
 </body>
 </html>

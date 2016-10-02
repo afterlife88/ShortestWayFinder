@@ -3,9 +3,9 @@
 
   angular.module('app').controller('HomeController', HomeController);
 
-  HomeController.$inject = ['PathService'];
+  HomeController.$inject = ['PathService', '$q'];
 
-  function HomeController(PathService) {
+  function HomeController(PathService, $q) {
 
     var vm = this;
     vm.points = [];
@@ -43,7 +43,6 @@
       return PathService.getAllPaths()
         .then(function (response) {
           vm.allPaths = response;
-          console.log(vm.allPaths);
         })
         .catch(function (err) {
           console.log(err);
@@ -109,6 +108,68 @@
         //    break;
         //}
       });
+    }
+
+    renderGraph();
+    function renderGraph() {
+      //var n = 1000;
+      var points, allPath;
+      $q.all([
+        PathService.getPoints(),
+        PathService.getAllPaths()
+      ]).then(function (data) {
+        points = data[0];
+        allPath = data[1];
+
+        var g = { nodes: [], edges: [] }
+
+        vm.points.forEach(function (item, i) {
+          g.nodes.push({
+            id: item.name,
+            label: item.name,
+            x: Math.random(),
+            y: Math.random(),
+            size: 1.5,
+            color: '#062f3c'
+          });
+        });
+
+        vm.allPaths.forEach(function (item, i) {
+          g.edges.push({
+            id: i,
+            label: item.time.toString(),
+            source: item.firstPoint,
+            target: item.secondPoint,
+            //size: item.time * 3,
+            color: '#007ea3'
+
+          });
+        });
+        // Instantiate sigma:
+        var s = new sigma({
+          graph: g,
+          renderer: {
+            container: document.getElementById('graph-container'),
+            type: 'canvas'
+          },
+          settings: {
+            labelThreshold: 2,
+            doubleClickEnabled: false,
+            minEdgeSize: 0.5,
+            maxEdgeSize: 3,
+            enableEdgeHovering: true,
+            edgeHoverColor: 'node',
+            defaultEdgeHoverColor: '#062f3c',
+            edgeHoverSizeRatio: 1,
+            edgeHoverExtremities: true,
+            autoCurveRatio: 2
+
+          }
+        });
+        s.refresh();
+      });
+
+
     }
   }
 })(angular);
