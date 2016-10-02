@@ -15,7 +15,13 @@
   <style>
     #graph-container {
       width: 96%;
-      height: 560px;
+      height: 730px;
+      position: absolute;
+    }
+
+    #shortestPath-graph-container {
+      width: 96%;
+      height: 200px;
       position: absolute;
     }
   </style>
@@ -23,7 +29,10 @@
 <body data-ng-controller="HomeController as vm">
   <span spinner-on="spinnerShown" us-spinner="{radius:30, width:8, length: 16}"></span>
   <!-- Banner with target points -->
-  <div class="banner-section" data-ng-include="'app/shared/banner.html'"></div>
+<div class="banner-section" data-ng-include="'app/shared/banner.html'">
+
+</div>
+
   <!-- Header -->
   <div class="header" data-ng-include="'app/shared/header.html'"></div>
 

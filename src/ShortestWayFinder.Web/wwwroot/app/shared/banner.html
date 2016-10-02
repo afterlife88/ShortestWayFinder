@@ -2,7 +2,7 @@
   <div class="banner-heder">
     <h3>
 
-      Shortest Way Finder
+      Shortest Way Finder {{vm.showShortPath}}
       <span>Visit all beautiful places in Barcelona for limited time</span>
     </h3>
   </div>
@@ -22,5 +22,14 @@
       <div class="clearfix"></div>
     </form>
   </div>
-
 </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box-shortestpath" ng-style="{'background-color': vm.backgroundColorShortestPath}">
+          <div id="shortestPath-graph-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>

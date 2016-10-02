@@ -8,13 +8,12 @@
   function HomeController(PathService, $q, Alertify) {
 
     var vm = this;
-    var sigmaGraph;
-
+    var sigmaGraph, sigmaShortestPathGraph;
     vm.points = [];
     vm.allPaths = [];
     vm.shortestPathData = {};
     vm.addPathData = {};
-
+    vm.backgroundColorShortestPath = '';
     vm.getShortestPath = getShortestPath;
     vm.editPath = editPath;
     vm.removePath = removePath;
@@ -53,27 +52,23 @@
           vm.allPaths = response;
         })
         .catch(function (err) {
-          console.log(err);
-          //switch (err.status) {
-          //  case 400:
-          //    vm.errorMsg = 'Some values are invalid!';
-          //    break;
-          //  case 401:
-          //    vm.errorMsg = 'Auth token are missing!';
-          //    break;
-          //  case 500:
-          //    vm.erorMsg = err.data;
-          //    break;
-          //  default:
-          //    vm.errorMsg = 'Something wrong...';
-          //    break;
-          //}
+          Alertify.error(err.data);
         });
     }
 
     function getShortestPath(data) {
+
       return PathService.getShortestPath(data).then(function (response) {
-        console.log(response);
+
+        vm.backgroundColorShortestPath = 'rgba(95, 109, 133, 0.8)';
+
+        var arrNodes = [];
+        response.forEach(function (item) {
+          arrNodes.push(item.firstPoint);
+          arrNodes.push(item.secondPoint);
+        });
+        renderShortestPathGraph(unique(arrNodes), response);
+
       }).catch(function (err) {
         console.log(err);
         switch (err.status) {
@@ -102,20 +97,21 @@
         getPaths();
       }).catch(function (err) {
         console.log(err);
-        //switch (err.status) {
-        //  case 400:
-        //    vm.errorMsg = 'Some values are invalid!';
-        //    break;
-        //  case 401:
-        //    vm.errorMsg = 'Auth token are missing!';
-        //    break;
-        //  case 500:
-        //    vm.erorMsg = err.data;
-        //    break;
-        //  default:
-        //    vm.errorMsg = 'Something wrong...';
-        //    break;
-        //}
+        switch (err.status) {
+          case 400:
+            if (err.data.SecondPoint !== undefined) {
+              Alertify.error(err.data.SecondPoint[0]);
+            } else {
+              Alertify.error(err.data);
+            }
+            break;
+          case 500:
+            Alertify.error(err.data);
+            break;
+          default:
+            Alertify.error('Something wrong...');
+            break;
+        }
       });
     }
 
@@ -147,7 +143,70 @@
         //}
       });
     }
+    function renderShortestPathGraph(arrNodes, arrPath) {
 
+
+      if (sigmaShortestPathGraph !== undefined)
+        sigmaShortestPathGraph.kill();
+
+      var g = { nodes: [], edges: [] }
+      console.log(arrNodes);
+      arrNodes.forEach(function (item, i) {
+        console.log(item);
+        g.nodes.push({
+          id: item,
+          label: item,
+          x: i * 35,
+          y: i * 0,
+          size: 1.5,
+          color: 'white'
+        });
+      });
+
+      arrPath.forEach(function (item, i) {
+        g.edges.push({
+          id: i,
+          label: item.time.toString(),
+          source: item.firstPoint,
+          target: item.secondPoint,
+          //size: item.time * 3,
+          color: 'white',
+          type: ['arrow']
+
+        });
+      });
+
+      sigmaShortestPathGraph = new sigma({
+        graph: g,
+        renderer: {
+          container: document.getElementById('shortestPath-graph-container'),
+          type: 'canvas'
+        },
+        settings: {
+
+          labelAlignment: 'top',
+          defaultLabelColor: 'white',
+          labelColor: 'node',
+          labelSizeRatio: '3',
+          labelThreshold: 2,
+          minEdgeSize: 8,
+          maxEdgeSize: 8,
+          minNodeSize: 9,
+          maxNodeSize: 17,
+          nodesPowRatio: 0.3,
+          edgesPowRatio: 0.3,
+          enableEdgeHovering: true,
+          edgeHoverColor: 'node',
+          defaultEdgeHoverColor: 'white',
+          edgeHoverExtremities: true,
+          edgeHoverSizeRatio: 1,
+          doubleClickEnabled: false,
+
+        }
+      });
+      sigmaShortestPathGraph.refresh();
+      sigmaShortestPathGraph.cameras[0].goTo({ x: 0, y: 0, angle: 0, ratio: 1.2 });
+    }
 
     function renderGraph() {
       // IF already render (if you add something or deleting path)
@@ -171,6 +230,7 @@
           edgeHoverSizeRatio: 1,
           edgeHoverExtremities: true,
           autoCurveRatio: 2
+
         }
       });
 
@@ -188,8 +248,9 @@
           g.nodes.push({
             id: item.name,
             label: item.name,
-            x: Math.random(),
-            y: Math.random(),
+            x: Math.cos(i * 2 * Math.PI / vm.points.length * 100),
+            y: Math.sin(i * 2 * Math.PI / vm.points.length * 100),
+
             size: 1.5,
             color: '#062f3c'
           });

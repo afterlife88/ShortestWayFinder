@@ -69,6 +69,10 @@ namespace ShortestWayFinder.Web.Controllers
                     return BadRequest("This path already exist!");
                 return StatusCode(201);
             }
+            catch (TimeIsNotPositiveException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);

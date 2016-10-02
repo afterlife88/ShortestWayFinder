@@ -25,35 +25,40 @@ namespace ShortestWayFinder.Domain.Infrastructure.Configuration
 
             var paths = new[]
            {
-                 new Path{FirstPoint="Open",SecondPoint="a",EstimatingTime=2},
-                 new Path{FirstPoint="o",SecondPoint="b",EstimatingTime=5},
-                 new Path{FirstPoint="o",SecondPoint="c",EstimatingTime=4},
+                 //new Path{FirstPoint="Sagrada Familia",SecondPoint="Las Ramblas",EstimatingTime=40},
+                 //new Path{FirstPoint="Las Ramblas",SecondPoint="La Pedrera",EstimatingTime=60},
+                 //new Path{FirstPoint="La Pedrera",SecondPoint="Sagrada Familia",EstimatingTime=25},
 
-                 new Path{FirstPoint="a",SecondPoint="f",EstimatingTime=12},
-                 new Path{FirstPoint="a",SecondPoint="d",EstimatingTime=7},
-                 new Path{FirstPoint="a",SecondPoint="b",EstimatingTime=2},
+                 //new Path{FirstPoint="Barcelona FC Museum",SecondPoint="Las Ramblas",EstimatingTime=120},
+                 //new Path{FirstPoint="Park Guell",SecondPoint="La Pedrera",EstimatingTime=160},
+                 //new Path{FirstPoint="Sagrada Familia",SecondPoint="Picasso Museum",EstimatingTime=30},
 
-                 new Path{FirstPoint="b",SecondPoint="d",EstimatingTime=4},
-                 new Path{FirstPoint="b",SecondPoint="e",EstimatingTime=3},
-                 new Path{FirstPoint="b",SecondPoint="c",EstimatingTime=1},
+                 //new Path{FirstPoint="Placa Reial",SecondPoint="Miro Museum",EstimatingTime=70},
+                 //new Path{FirstPoint="La Pedrera",SecondPoint="Placa Reial",EstimatingTime=15},
+                 //new Path{FirstPoint="Gothic Quarter",SecondPoint="Las Ramblas",EstimatingTime=45},
 
-                 new Path{FirstPoint="c",SecondPoint="e",EstimatingTime=4},
+                 //new Path{FirstPoint="Casa Batllo",SecondPoint="Gothic Quarter",EstimatingTime=30},
 
-                 new Path{FirstPoint="d",SecondPoint="e",EstimatingTime=1},
-                 new Path{FirstPoint="d",SecondPoint="t",EstimatingTime=5},
+                 //new Path{FirstPoint="Barceloneta",SecondPoint="Las Ramblas",EstimatingTime=15},
 
-                 new Path{FirstPoint="e",SecondPoint="t",EstimatingTime=7},
 
-                 new Path{FirstPoint="f",SecondPoint="t",EstimatingTime=3}
+                 new Path{FirstPoint="Sagrada Familia",SecondPoint="Las Ramblas",EstimatingTime=40},
+                 new Path{FirstPoint="Sagrada Familia",SecondPoint="La Pedrera",EstimatingTime=60},
+                 new Path{FirstPoint="Sagrada Familia",SecondPoint="Picasso Museum",EstimatingTime=25},
+                 new Path{FirstPoint="Las Ramblas",SecondPoint="Gothic Quarter",EstimatingTime=120},
+                 new Path{FirstPoint="Las Ramblas",SecondPoint="Barceloneta",EstimatingTime=30},
+                 new Path{FirstPoint="Las Ramblas",SecondPoint="La Pedrera",EstimatingTime=30},
+                 new Path{FirstPoint="La Pedrera",SecondPoint="Barceloneta",EstimatingTime=120},
+                 new Path{FirstPoint="La Pedrera",SecondPoint="Placa Reial",EstimatingTime=160},
+                 new Path{FirstPoint="La Pedrera",SecondPoint="Picasso Museum",EstimatingTime=30},
+                 new Path{FirstPoint="Picasso Museum",SecondPoint="Placa Reial",EstimatingTime=30},
+                 new Path{FirstPoint="Barceloneta",SecondPoint="Placa Reial",EstimatingTime=15},
+                 new Path{FirstPoint="Barceloneta",SecondPoint="Barcelona FC Museum",EstimatingTime=140},
+                 new Path{FirstPoint="Placa Reial",SecondPoint="Barcelona FC Museum",EstimatingTime=180},
+                 new Path{FirstPoint="Gothic Quarter",SecondPoint="Barcelona FC Museum",EstimatingTime=200},
+                 new Path{FirstPoint="Park Guell",SecondPoint="La Pedrera",EstimatingTime=160},
+                 new Path{FirstPoint="Park Guell",SecondPoint="Barceloneta",EstimatingTime=180}
              };
-            // var paths = new[]
-            //{
-            //      new Path{FirstPoint="a",SecondPoint="b",EstimatingTime=1},
-            //      new Path{FirstPoint="b",SecondPoint="c",EstimatingTime=1000},
-            //      new Path{FirstPoint="c",SecondPoint="d",EstimatingTime=1},
-            //      new Path{FirstPoint="d",SecondPoint="a",EstimatingTime=100},
-            //      new Path{FirstPoint="x",SecondPoint="x",EstimatingTime=100}
-            //  };
             _context.Paths.AddRange(paths);
 
             await _context.SaveChangesAsync();

@@ -30,6 +30,8 @@ namespace ShortestWayFinder.Web.Services
         }
         public async Task<bool> CreatePathAsync(PathDto pathDto)
         {
+            if (!(pathDto.Time > 0))
+                throw new TimeIsNotPositiveException("Time must be a positive number!");
 
             var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNamesAsync(pathDto.FirstPoint, pathDto.SecondPoint);
 
