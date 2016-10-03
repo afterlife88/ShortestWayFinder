@@ -16,6 +16,7 @@
 
 ##Technologies used:
 **Backend:** - ASP.NET Core, Entity Framework Core, Automapper, MS SQL, Swagger (Auto-generated documentation for API), XUnit, Moq.
+
 **Frontend** - AngularJS, Bootstrap, JQuery, Alertify.js, SigmaJS(graph drawing on the view)
 
 ##Project structure
@@ -33,14 +34,17 @@ Barcelona is a famous part of Europe with a lot of tourist attractions, hotels, 
 can visit many beautiful locations. But of course, moving from point A to point B takes time.
 When your time is limited, you may want to optimize your tour and find the shortest path
 between two points on the map.
+
 Prepare a web application, where users will be able to add, delete and edit connections on
 the map, each connection will be described by:
+
 1. name of the first point
 2. name of the second point
 3. number of minutes/hours needed to travel between these points.
 4. ask to find a shortest path between two points on the map, for example, by selecting
 them from dropdown menus; as the result, total number of minutes in the shortest
 path between them should be displayed.
+
 As you may notice, one point may be connected to many other points on the map. As a data
 storage you may use any SQL database or text files, only databases supporting graph
 structures are forbidden.
