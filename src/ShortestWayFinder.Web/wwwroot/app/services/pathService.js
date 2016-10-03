@@ -12,7 +12,8 @@
       getShortestPath: getShortestPath,
       getAllPaths: getAllPaths,
       removePath: removePath,
-      addPath: addPath
+      addPath: addPath,
+      updatePath: updatePath
     };
 
     return pathService;
@@ -63,7 +64,7 @@
 
     function addPath(data) {
       spinnerService.showSpinner();
-      return $http.post('api/path/add', data).then(function(response) {
+      return $http.post('api/path/add', data).then(function (response) {
         spinnerService.hideSpinner();
         return response.data;
       }).catch(function (data) {
@@ -71,17 +72,15 @@
         return $q.reject(data);
       });
     }
-    //function update(user, token) {
-    //  spinner.showWait();
-    //  return $http.put('api/user/update', user, {
-    //    headers: { 'Authorization': token }
-    //  }).then(function (response) {
-    //    spinner.hideWait();
-    //    return response;
-    //  }).catch(function (data) {
-    //    spinner.hideWait();
-    //    return $q.reject(data);
-    //  });
-    //}
+    function updatePath(data) {
+      spinnerService.showSpinner();
+      return $http.put('api/path/update', data).then(function (response) {
+        spinnerService.hideSpinner();
+        return response.data;
+      }).catch(function (data) {
+        spinnerService.hideSpinner();
+        return $q.reject(data);
+      });
+    }
   }
 })();

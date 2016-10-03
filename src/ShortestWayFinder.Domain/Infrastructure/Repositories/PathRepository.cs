@@ -21,6 +21,17 @@ namespace ShortestWayFinder.Domain.Infrastructure.Repositories
             _dataDbContext.Paths.Add(model);
             return await _dataDbContext.SaveChangesAsync();
         }
+        public async Task<int> EditAsync(int id, Path model)
+        {
+            var path = await _dataDbContext.Paths.SingleOrDefaultAsync(r => r.Id == id);
+            if (path == null)
+                throw new KeyNotFoundException($"A path with requested Id not existed in database!");
+
+            path.FirstPoint = model.FirstPoint;
+            path.SecondPoint = model.SecondPoint;
+            path.EstimatingTime = model.EstimatingTime;
+            return await _dataDbContext.SaveChangesAsync();
+        }
 
         public async Task<IEnumerable<Path>> GetAllAsync()
         {

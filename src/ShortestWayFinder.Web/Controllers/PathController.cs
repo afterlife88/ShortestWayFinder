@@ -78,6 +78,36 @@ namespace ShortestWayFinder.Web.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        // PUT api/path/update
+
+        [Route("update")]
+        [HttpPut]
+        [ProducesResponseType(typeof(NoContentResult), 204)]
+        [ProducesResponseType(typeof(BadRequestResult), 400)]
+        [ProducesResponseType(typeof(InternalServerErrorResult), 500)]
+        public async Task<IActionResult> UpdatePath([FromBody] PathDto pathDto)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
+
+                await _pathService.UpdatePathAsync(pathDto);
+                return StatusCode(204);
+            }
+            catch (TimeIsNotPositiveException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
         // POST api/path/shortestpath
 
         [Route("shortestpath")]

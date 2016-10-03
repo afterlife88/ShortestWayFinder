@@ -11,5 +11,6 @@ namespace ShortestWayFinder.Domain.Infrastructure.Contracts
         Task<Path> GetAsync(int id);
         Task<int> AddPathAsync(Path model);
         Task<int> RemoveAsync(Path model);
+        Task<int> EditAsync(int id, Path model);
     }
 }

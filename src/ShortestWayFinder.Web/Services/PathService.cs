@@ -42,6 +42,15 @@ namespace ShortestWayFinder.Web.Services
 
             return true;
         }
+        public async Task<bool> UpdatePathAsync(PathDto pathDto)
+        {
+            if (!(pathDto.Time > 0))
+                throw new TimeIsNotPositiveException("Time must be a positive number!");
+
+            await _pathRepository.EditAsync(pathDto.Id.GetValueOrDefault(-1), Mapper.Map<PathDto, Path>(pathDto));
+
+            return true;
+        }
         public async Task<bool> RemovePathAsync(int id)
         {
             var getPathItem = await _pathRepository.GetAsync(id);

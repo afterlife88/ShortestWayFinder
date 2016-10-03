@@ -115,7 +115,29 @@
     }
 
     function editPath(data, id) {
+      angular.extend({ Id: id }, data);
       console.log(data, id);
+      return PathService.updatePath(data)
+        .then(function (response) {
+          console.log(response);
+        }).catch(function (err) {
+          console.log(err);
+          switch (err.status) {
+            case 400:
+              if (err.data.SecondPoint !== undefined) {
+                Alertify.error(err.data.SecondPoint[0]);
+              } else {
+                Alertify.error(err.data);
+              }
+              break;
+            case 500:
+              Alertify.error(err.data);
+              break;
+            default:
+              Alertify.error('Something wrong...');
+              break;
+          }
+        });
     }
 
     function removePath(id, item) {
