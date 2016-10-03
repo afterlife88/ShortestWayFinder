@@ -115,11 +115,11 @@
     }
 
     function editPath(data, id) {
-      angular.extend({ Id: id }, data);
-      console.log(data, id);
+      data.Id = id;
+     
       return PathService.updatePath(data)
-        .then(function (response) {
-          console.log(response);
+        .then(function () {
+          Alertify.success('Path updated successfully!');
         }).catch(function (err) {
           console.log(err);
           switch (err.status) {
