@@ -15,14 +15,6 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
             //Arrange
             var edges = new[]
             {
-                // Sagrada Familia - o
-                // Las Ramblas - a
-                // La Pedrera - b
-                // Picasso Museum - c
-                // Gothic Quarter - f
-                // Barceloneta - d
-                // Placa Reial - e
-                // Barcelona FC Museum  - t
                 new Edge{Start="o",End="a",Cost=2},
                 new Edge{Start="o",End="b",Cost=5},
                 new Edge{Start="o",End="c",Cost=4},
