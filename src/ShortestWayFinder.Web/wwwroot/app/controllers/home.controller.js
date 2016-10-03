@@ -29,7 +29,6 @@
     // Init points and list of paths and render graph
     getPoints();
     getPaths();
-    renderGraph();
 
     function getPoints() {
       return PathService.getPoints().then(function (response) {
@@ -40,10 +39,15 @@
     }
 
     function getPaths() {
-      return PathService.getAllPaths()
-        .then(function (response) {
-          vm.allPaths = response;
-        })
+      return PathService.getAllPaths().then(function (response) {
+        var arrNodes = [];
+        response.forEach(function (item) {
+          arrNodes.push(item.firstPoint);
+          arrNodes.push(item.secondPoint);
+        });
+        vm.allPaths = response;
+        renderGraph(unique(arrNodes), response);
+      })
         .catch(function (err) {
           Alertify.error(err.data);
         });
@@ -122,6 +126,7 @@
       return PathService.updatePath(data)
         .then(function () {
           Alertify.success('Path updated successfully!');
+          getPoints();
         }).catch(function (err) {
           console.log(err);
           switch (err.status) {
@@ -146,7 +151,6 @@
       return PathService.removePath(id).then(function () {
         var index = vm.allPaths.indexOf(item);
         vm.allPaths.splice(index, 1);
-        renderGraph();
         getPoints();
       }).catch(function (err) {
         console.log(err);
@@ -202,7 +206,6 @@
           type: 'canvas'
         },
         settings: {
-
           labelAlignment: 'top',
           defaultLabelColor: 'white',
           labelColor: 'node',
@@ -227,13 +230,39 @@
       sigmaShortestPathGraph.cameras[0].goTo({ x: 0, y: 0, angle: 0, ratio: 1.2 });
     }
 
-    function renderGraph() {
+    function renderGraph(arrNodes, arrPath) {
       // IF already render (if you add something or deleting path)
       if (sigmaGraph !== undefined)
         sigmaGraph.kill();
 
-      // Instantiate sigma:
+
+      var g = { nodes: [], edges: [] }
+
+      arrNodes.forEach(function (item, i) {
+        g.nodes.push({
+          id: item,
+          label: item,
+          x: Math.cos(i * 2 * Math.PI * 100 / Math.pow(vm.points.length, 3)),
+          y: Math.sin(i * 2 * Math.PI * 100 / Math.pow(vm.points.length, 3)),
+
+          size: 1.5,
+          color: '#062f3c'
+        });
+      });
+
+      arrPath.forEach(function (item, i) {
+        g.edges.push({
+          id: i,
+          label: item.time.toString(),
+          source: item.firstPoint,
+          target: item.secondPoint,
+          //size: item.time * 3,
+          color: '#007ea3'
+
+        });
+      });
       sigmaGraph = new sigma({
+        graph: g,
         renderer: {
           container: document.getElementById('graph-container'),
           type: 'canvas'
@@ -252,43 +281,8 @@
           zoomingRatio: 1.2
         }
       });
-
-      var points, allPath;
-      $q.all([
-        PathService.getPoints(),
-        PathService.getAllPaths()
-      ]).then(function (data) {
-        points = data[0];
-        allPath = data[1];
-
-        var g = { nodes: [], edges: [] }
-
-        vm.points.forEach(function (item, i) {
-          g.nodes.push({
-            id: item.name,
-            label: item.name,
-            x: Math.cos(i * 2 * Math.PI * 100 / Math.pow(vm.points.length, 3)),
-            y: Math.sin(i * 2 * Math.PI * 100/ Math.pow(vm.points.length, 3)),
-
-            size: 1.5,
-            color: '#062f3c'
-          });
-        });
-
-        vm.allPaths.forEach(function (item, i) {
-          g.edges.push({
-            id: i,
-            label: item.time.toString(),
-            source: item.firstPoint,
-            target: item.secondPoint,
-            //size: item.time * 3,
-            color: '#007ea3'
-
-          });
-        });
-        sigmaGraph.graph.read(g);
-        sigmaGraph.refresh();
-      });
+      // Instantiate sigma:
+      sigmaGraph.refresh();
     }
   }
 })(angular);
