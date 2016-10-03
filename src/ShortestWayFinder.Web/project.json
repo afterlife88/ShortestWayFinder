@@ -14,7 +14,10 @@
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1",
     "AutoMapper": "5.1.1",
-    "Swashbuckle": "6.0.0-beta902"
+    "Swashbuckle": "6.0.0-beta902",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.1",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0",
+    "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0"
   },
 
   "tools": {
@@ -46,7 +49,8 @@
   "publishOptions": {
     "include": [
       "wwwroot",
-      "web.config"
+      "web.config",
+      "appsettings.json"
     ]
   },
 
