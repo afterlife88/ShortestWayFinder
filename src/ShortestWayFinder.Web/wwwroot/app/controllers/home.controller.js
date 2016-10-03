@@ -3,9 +3,9 @@
 
   angular.module('app').controller('HomeController', HomeController);
 
-  HomeController.$inject = ['PathService', '$q', 'Alertify'];
+  HomeController.$inject = ['PathService', '$q', 'Alertify', '$timeout'];
 
-  function HomeController(PathService, $q, Alertify) {
+  function HomeController(PathService, $q, Alertify, $timeout) {
 
     var vm = this;
     var sigmaGraph, sigmaShortestPathGraph;
@@ -46,7 +46,10 @@
           arrNodes.push(item.secondPoint);
         });
         vm.allPaths = response;
-        renderGraph(unique(arrNodes), response);
+        $timeout(function () {
+          renderGraph(unique(arrNodes), response);
+        }, 1000);
+
       }).catch(function (err) {
         Alertify.error(err.data);
       });
