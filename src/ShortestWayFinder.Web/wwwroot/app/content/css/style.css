@@ -795,3 +795,14 @@ h2.tittle {
         font-weight: 500;
         font-size: 120%;
     }
+
+.spinner:before {
+    background-color: rgba(49, 37, 37, 0.2);
+    border-radius: 6px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    content: " ";
+}
