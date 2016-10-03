@@ -267,8 +267,8 @@
           g.nodes.push({
             id: item.name,
             label: item.name,
-            x: Math.cos(i * 2 * Math.PI / vm.points.length),
-            y: Math.sin(i * 2 * Math.PI / vm.points.length),
+            x: Math.cos(i * 2 * Math.PI * 100 / Math.pow(vm.points.length, 3)),
+            y: Math.sin(i * 2 * Math.PI * 100/ Math.pow(vm.points.length, 3)),
 
             size: 1.5,
             color: '#062f3c'
