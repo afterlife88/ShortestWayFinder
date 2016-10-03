@@ -100,6 +100,8 @@
           case 400:
             if (err.data.SecondPoint !== undefined) {
               Alertify.error(err.data.SecondPoint[0]);
+              if (err.data.SecondPoint[1])
+                Alertify.error(err.data.SecondPoint[1]);
             } else {
               Alertify.error(err.data);
             }
@@ -116,7 +118,7 @@
 
     function editPath(data, id) {
       data.Id = id;
-     
+
       return PathService.updatePath(data)
         .then(function () {
           Alertify.success('Path updated successfully!');
@@ -217,7 +219,8 @@
           defaultEdgeHoverColor: 'white',
           edgeHoverExtremities: true,
           edgeHoverSizeRatio: 1,
-          doubleClickEnabled: false
+          doubleClickEnabled: true,
+          mouseEnabled: false
         }
       });
       sigmaShortestPathGraph.refresh();
@@ -245,8 +248,8 @@
           defaultEdgeHoverColor: '#062f3c',
           edgeHoverSizeRatio: 1,
           edgeHoverExtremities: true,
-          autoCurveRatio: 2
-
+          autoCurveRatio: 2,
+          zoomingRatio: 1.2
         }
       });
 

@@ -21,6 +21,8 @@ namespace ShortestWayFinder.Web.ValidationAttributes
                 return new ValidationResult($"Unkown property: {_firstPoint}");
 
             var firstPointName = firstPointProperty.GetValue(validationContext.ObjectInstance, null);
+            if (firstPointName == null | value == null)
+                return new ValidationResult("Points names can not be null!");
 
             if (string.Equals(value.ToString(), firstPointName.ToString(), StringComparison.CurrentCultureIgnoreCase))
             {
