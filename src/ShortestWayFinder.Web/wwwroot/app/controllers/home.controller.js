@@ -47,10 +47,9 @@
         });
         vm.allPaths = response;
         renderGraph(unique(arrNodes), response);
-      })
-        .catch(function (err) {
-          Alertify.error(err.data);
-        });
+      }).catch(function (err) {
+        Alertify.error(err.data);
+      });
     }
 
     function getShortestPath(data) {
@@ -121,37 +120,46 @@
     }
 
     function editPath(data, id) {
-      data.Id = id;
+      var d = $q.defer();
 
-      return PathService.updatePath(data)
-        .then(function () {
-          Alertify.success('Path updated successfully!');
-          getPoints();
-        }).catch(function (err) {
-          console.log(err);
-          switch (err.status) {
-            case 400:
-              if (err.data.SecondPoint !== undefined) {
-                Alertify.error(err.data.SecondPoint[0]);
-              } else {
-                Alertify.error(err.data);
-              }
-              break;
-            case 500:
+      data.Id = id;
+      return PathService.updatePath(data).then(function () {
+        Alertify.success('Path updated successfully!');
+        getPoints();
+        getPaths();
+        d.resolve();
+      }).catch(function (err) {
+        console.log(err);
+        switch (err.status) {
+          case 400:
+            if (err.data.SecondPoint !== undefined) {
+              d.resolve(err.data.SecondPoint[0]);
+              Alertify.error(err.data.SecondPoint[0]);
+            } else {
               Alertify.error(err.data);
-              break;
-            default:
-              Alertify.error('Something wrong...');
-              break;
-          }
-        });
+              d.resolve(err.data);
+            }
+            break;
+          case 500:
+            d.resolve(err.data);
+            Alertify.error(err.data);
+            break;
+          default:
+            Alertify.error('Something wrong...');
+            break;
+        }
+        return d.promise;
+      });
+
     }
+
 
     function removePath(id, item) {
       return PathService.removePath(id).then(function () {
         var index = vm.allPaths.indexOf(item);
         vm.allPaths.splice(index, 1);
         getPoints();
+        getPaths();
       }).catch(function (err) {
         console.log(err);
         switch (err.status) {
