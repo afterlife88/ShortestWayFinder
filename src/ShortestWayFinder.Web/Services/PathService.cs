@@ -46,6 +46,13 @@ namespace ShortestWayFinder.Web.Services
         {
             if (!(pathDto.Time > 0))
                 throw new TimeIsNotPositiveException("Time must be a positive number!");
+           
+            var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNamesAsync(pathDto.FirstPoint, pathDto.SecondPoint);
+            if (checkIsAlreadyPathExist != null)
+            {
+                if (checkIsAlreadyPathExist.Id != pathDto.Id)
+                    return false;
+            }
 
             await _pathRepository.EditAsync(pathDto.Id.GetValueOrDefault(-1), Mapper.Map<PathDto, Path>(pathDto));
 
@@ -62,7 +69,7 @@ namespace ShortestWayFinder.Web.Services
         }
         public async Task<IEnumerable<PathDto>> GetShortestPathAsync(ShortestPathRequestDto requestDto)
         {
-            
+
             // Check if points exist
             var checkIsPointsExist = await GetPointsAsync();
             var firstOrDefault = checkIsPointsExist.FirstOrDefault(r => r.Name == requestDto.FirstPoint || r.Name == requestDto.SecondPoint);

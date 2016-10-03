@@ -128,7 +128,11 @@ namespace ShortestWayFinder.Web.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                await _pathService.UpdatePathAsync(pathDto);
+                var result = await _pathService.UpdatePathAsync(pathDto);
+
+                if (!result)
+                    return BadRequest("This path already exist!");
+          
                 return StatusCode(204);
             }
             catch (TimeIsNotPositiveException ex)

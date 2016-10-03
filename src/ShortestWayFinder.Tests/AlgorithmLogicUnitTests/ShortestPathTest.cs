@@ -51,9 +51,6 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
             // Sum of cost (time) on edges to shortest path 
             // 2+2+4+5=13
             Assert.Equal(13, path[0].Sum(e => e.Cost));
-            // 5 Vertex are contains on short path
-            Assert.Equal(5, path[1].Count);
-            Assert.Equal(13, path[1].Sum(e => e.Cost));
         }
 
         [Fact]
@@ -77,7 +74,7 @@ namespace ShortestWayFinder.Tests.AlgorithmLogicUnitTests
             // https://s12.postimg.org/qpcibaoy5/scenario_B.png
             //Assert
             Assert.Equal(1, path.Count);
-           
+
             // 2 edges are in short path
             Assert.Equal(2, path[0].Count);
 
