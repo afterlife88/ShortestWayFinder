@@ -16,6 +16,7 @@
 
 ##Technologies used:
 **Backend:** - ASP.NET Core, Entity Framework Core, Automapper, MS SQL, Swagger (Auto-generated documentation for API), XUnit, Moq.
+
 **Frontend** - AngularJS, Bootstrap, JQuery, Alertify.js, SigmaJS(graph drawing on the view)
 
 ##Project structure
