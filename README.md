@@ -15,9 +15,9 @@
 > - `docker run -p 8080:5000 -t app`
 
 ##Technologies used:
-**Backend:** - ASP.NET Core, Entity Framework Core, Automapper, MS SQL, Swagger (Auto-generated documentation for API), XUnit, Moq.
+**Backend:** ASP.NET Core, Entity Framework Core, Automapper, MS SQL, Swagger (Auto-generated documentation for API), XUnit, Moq.
 
-**Frontend** - AngularJS, Bootstrap, JQuery, Alertify.js, SigmaJS(graph drawing on the view)
+**Frontend:** AngularJS, Bootstrap, JQuery, Alertify.js, SigmaJS(graph drawing on the view)
 
 ##Project structure
 - **ShortestWayFinder.Web** - REST API, project contains controllers, services etc.
