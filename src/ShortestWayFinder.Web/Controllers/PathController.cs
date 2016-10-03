@@ -126,6 +126,10 @@ namespace ShortestWayFinder.Web.Controllers
 
                 return Ok(result);
             }
+            catch (PointsNotExistException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (PointsNotConnectedException ex)
             {
                 return BadRequest(ex.Message);

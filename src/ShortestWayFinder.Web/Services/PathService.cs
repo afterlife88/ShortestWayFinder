@@ -62,8 +62,16 @@ namespace ShortestWayFinder.Web.Services
         }
         public async Task<IEnumerable<PathDto>> GetShortestPathAsync(ShortestPathRequestDto requestDto)
         {
-            var getAllPaths = await _pathRepository.GetAllAsync();
+            
+            // Check if points exist
+            var checkIsPointsExist = await GetPointsAsync();
+            var firstOrDefault = checkIsPointsExist.FirstOrDefault(r => r.Name == requestDto.FirstPoint || r.Name == requestDto.SecondPoint);
 
+            if (firstOrDefault == null)
+                throw new PointsNotExistException("Requested points not exist!");
+
+
+            var getAllPaths = await _pathRepository.GetAllAsync();
             IShortestPath targt = new ShortestPathAlgorithm(Mapper.Map<IEnumerable<Path>, IEnumerable<Edge>>(getAllPaths));
 
             IList<List<Edge>> path = targt.GetShortestPath(requestDto.FirstPoint, requestDto.SecondPoint);

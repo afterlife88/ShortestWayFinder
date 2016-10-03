@@ -75,8 +75,8 @@
         console.log(err);
         switch (err.status) {
           case 400:
-            if (err.data.SecondPoint !== undefined) {
-              Alertify.error(err.data.SecondPoint[0]);
+            if (err.data.secondPoint !== undefined) {
+              Alertify.error(err.data.secondPoint[0]);
             } else {
               Alertify.error(err.data);
             }
@@ -101,10 +101,10 @@
         console.log(err);
         switch (err.status) {
           case 400:
-            if (err.data.SecondPoint !== undefined) {
-              Alertify.error(err.data.SecondPoint[0]);
-              if (err.data.SecondPoint[1])
-                Alertify.error(err.data.SecondPoint[1]);
+            if (err.data.secondPoint !== undefined) {
+              Alertify.error(err.data.secondPoint[0]);
+              if (err.data.secondPoint[1])
+                Alertify.error(err.data.secondPoint[1]);
             } else {
               Alertify.error(err.data);
             }
@@ -132,9 +132,9 @@
         console.log(err);
         switch (err.status) {
           case 400:
-            if (err.data.SecondPoint !== undefined) {
-              d.resolve(err.data.SecondPoint[0]);
-              Alertify.error(err.data.SecondPoint[0]);
+            if (err.data.secondPoint !== undefined) {
+              d.resolve(err.data.secondPoint[0]);
+              Alertify.error(err.data.secondPoint[0]);
             } else {
               Alertify.error(err.data);
               d.resolve(err.data);

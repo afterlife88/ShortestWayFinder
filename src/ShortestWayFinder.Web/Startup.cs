@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
+using Newtonsoft.Json.Serialization;
 using ShortestWayFinder.Domain;
 using ShortestWayFinder.Domain.Infrastructure.Algorithms;
 using ShortestWayFinder.Domain.Infrastructure.Configuration;
@@ -9,6 +12,7 @@ using ShortestWayFinder.Domain.Infrastructure.Repositories;
 using ShortestWayFinder.Web.Configuration;
 using ShortestWayFinder.Web.Contracts;
 using ShortestWayFinder.Web.Services;
+using Swashbuckle.Swagger.Model;
 
 namespace ShortestWayFinder.Web
 {
@@ -22,7 +26,22 @@ namespace ShortestWayFinder.Web
             services.AddScoped<IPathRepository, PathRepository>();
             services.AddScoped<IPathService, PathService>();
             services.AddScoped<IShortestPath, ShortestPathAlgorithm>();
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            });
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
+                {
+                    Version = "v1",
+                    Title = "Shortest way finder",
+                    Description = "API documentation",
+                    TermsOfService = "None"
+                });
+                options.IncludeXmlComments(GetXmlCommentsPath(PlatformServices.Default.Application));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +63,20 @@ namespace ShortestWayFinder.Web
             app.UseDeveloperExceptionPage();
             app.UseMvc();
 
+            app.UseSwagger((httpRequest, swaggerDoc) =>
+            {
+                swaggerDoc.Host = httpRequest.Host.Value;
+            });
+
+            app.UseSwaggerUi();
+            app.UseMvcWithDefaultRoute();
             // Recreate db's
             databaseInitializer.Seed().GetAwaiter().GetResult();
+        }
+
+        private string GetXmlCommentsPath(ApplicationEnvironment appEnvironment)
+        {
+            return Path.Combine(appEnvironment.ApplicationBasePath, "ShortestWayFinder.Web.xml");
         }
     }
 }

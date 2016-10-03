@@ -13,7 +13,8 @@
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1",
-    "AutoMapper": "5.1.1"
+    "AutoMapper": "5.1.1",
+    "Swashbuckle": "6.0.0-beta902"
   },
 
   "tools": {
@@ -31,7 +32,9 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "nowarn": [ "1591" ],
+    "xmlDoc": true
   },
 
   "runtimeOptions": {
