@@ -46,7 +46,7 @@ namespace ShortestWayFinder.Web.Services
         {
             if (!(pathDto.Time > 0))
                 throw new TimeIsNotPositiveException("Time must be a positive number!");
-           
+
             var checkIsAlreadyPathExist = await _pathRepository.GetByPointsNamesAsync(pathDto.FirstPoint, pathDto.SecondPoint);
             if (checkIsAlreadyPathExist != null)
             {
@@ -102,7 +102,8 @@ namespace ShortestWayFinder.Web.Services
                 listOfPoints.Add(new PointDto { Name = path.FirstPoint });
                 listOfPoints.Add(new PointDto { Name = path.SecondPoint });
             }
-            return listOfPoints.Distinct(new DistinctItemComparer());
+            var result = listOfPoints.Distinct(new DistinctItemComparer());
+            return result.ToList();
         }
     }
 }
