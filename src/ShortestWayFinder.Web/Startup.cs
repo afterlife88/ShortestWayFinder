@@ -26,8 +26,10 @@ namespace ShortestWayFinder.Web
             builder.AddJsonFile("appsettings.json");
             var connectionStringConfig = builder.Build();
 
-            services.AddDbContext<DataDbContext>(opt => opt.UseSqlServer(
-                connectionStringConfig.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<DataDbContext>(opt => opt.UseSqlServer(
+            //    connectionStringConfig.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<DataDbContext>(opt => opt.UseInMemoryDatabase());
 
             services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
             services.AddScoped<IPathRepository, PathRepository>();
@@ -78,9 +80,7 @@ namespace ShortestWayFinder.Web
             app.UseSwaggerUi();
             app.UseMvcWithDefaultRoute();
 
-            // Seed data to database (commented because uses not local sql database)
-            // Change 29 line to use UseInMemoryDatabase and uncomment line bellow to reseed data.
-            // databaseInitializer.Seed().GetAwaiter().GetResult();
+            databaseInitializer.Seed().GetAwaiter().GetResult();
         }
 
         private string GetXmlCommentsPath(ApplicationEnvironment appEnvironment)
