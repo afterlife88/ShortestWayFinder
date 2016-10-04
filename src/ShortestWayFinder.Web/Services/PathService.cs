@@ -102,7 +102,7 @@ namespace ShortestWayFinder.Web.Services
                 listOfPoints.Add(new PointDto { Name = path.FirstPoint });
                 listOfPoints.Add(new PointDto { Name = path.SecondPoint });
             }
-            var result = listOfPoints.Distinct(new DistinctItemComparer());
+            var result = listOfPoints.Distinct(new DistinctPointDtoComparer());
             return result.ToList();
         }
     }

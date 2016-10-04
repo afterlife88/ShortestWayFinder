@@ -8,6 +8,7 @@ namespace ShortestWayFinder.Web.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            // Just returning index.html to use angular on the client
             return View("index");
         }
     }

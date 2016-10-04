@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Moq;
 using ShortestWayFinder.Domain.DatabaseModels;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;
@@ -45,7 +44,7 @@ namespace ShortestWayFinder.Tests.ApiServicesUnitTests
             var result = await service.GetAllExistedPathsAsync();
 
             // Assert
-            var list = Assert.IsType<List<PathDto>>(result); ;
+            var list = Assert.IsType<List<PathDto>>(result);
             Assert.Equal(4, list.Count);
         }
         [Fact]
@@ -57,9 +56,11 @@ namespace ShortestWayFinder.Tests.ApiServicesUnitTests
             var service = new PathService(mockRepo.Object);
             AutomapperConfiguration.Load();
 
+            // Act
             var objectToAdd = new PathDto() { FirstPoint = "First point", SecondPoint = "Second point", Time = 55 };
             var resultAfterAdd = await service.CreatePathAsync(objectToAdd);
 
+            // Assert
             Assert.Equal(true, resultAfterAdd);
         }
         [Fact]
@@ -72,11 +73,12 @@ namespace ShortestWayFinder.Tests.ApiServicesUnitTests
             AutomapperConfiguration.Load();
 
             var objectToAdd = new PathDto() { FirstPoint = "Sagrada Familia", SecondPoint = "La Pedrera", Time = 0 };
-
+            // Act
             var aggregateException = Assert.Throws<AggregateException>(() => service.CreatePathAsync(objectToAdd).Wait());
             var timeIsNotPositiveException = aggregateException.InnerExceptions.
                 FirstOrDefault(x => x.GetType() == typeof(TimeIsNotPositiveException)) as TimeIsNotPositiveException;
-            
+
+            // Assert
             Assert.NotNull(timeIsNotPositiveException);
             Assert.Equal("Time must be a positive number!", timeIsNotPositiveException.Message);
         }

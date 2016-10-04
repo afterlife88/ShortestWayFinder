@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using ShortestWayFinder.Domain.DatabaseModels;
 using ShortestWayFinder.Domain.Infrastructure.Contracts;

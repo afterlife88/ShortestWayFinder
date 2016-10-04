@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using ShortestWayFinder.Domain.Infrastructure.Contracts;
 using ShortestWayFinder.Web.Contracts;
 using ShortestWayFinder.Web.Controllers;
 using ShortestWayFinder.Web.Models;

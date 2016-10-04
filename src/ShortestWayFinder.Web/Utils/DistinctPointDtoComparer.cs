@@ -3,7 +3,7 @@ using ShortestWayFinder.Web.Models;
 
 namespace ShortestWayFinder.Web.Utils
 {
-    public class DistinctItemComparer : IEqualityComparer<PointDto>
+    public class DistinctPointDtoComparer : IEqualityComparer<PointDto>
     {
         public bool Equals(PointDto x, PointDto y)
         {
