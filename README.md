@@ -1,31 +1,31 @@
-#Shortest Way Finder
+# Shortest Way Finder
 ### It-Challenges 2016 fall, back-end qualification round
 
-##Demo
+## Demo
 > - http://challenge-task.info
 
 
 ## Run in docker
 ### Pull image of application from docker hub and run on 8080 port:
-> - **docker run -p 8080:5000 itchallenges/shortest-way-finder**
-> - Run localhost:8080 in the browser, if the port is busy, change in docker run 8080 to any available port and run again.
+> - **`docker run -p 8080:5000 itchallenges/shortest-way-finder`**
+> - Run localhost:8080 in the browser, if the port is busy, change `8080` in `docker run` command to any available port and run again.
 
 ### Alternative way - build from sources and run:
 > - `docker build -t app .`
 > - `docker run -p 8080:5000 -t app`
 
-##Technologies used:
+## Technologies used:
 **Backend:** ASP.NET Core, Entity Framework Core, Automapper, MS SQL, Swagger (Auto-generated documentation for API), XUnit, Moq.
 
 **Frontend:** AngularJS, Bootstrap, JQuery, Alertify.js, SigmaJS(graph drawing on the view)
 
-##Project structure
+## Project structure
 - **ShortestWayFinder.Web** - REST API, project contains controllers, services etc.
-- **ShortestWayFinder.Web\wwwroot** - client with AngularJS
+- **ShortestWayFinder.Web/wwwroot** - client with AngularJS
 - **ShortestWayFinder.Domain** - the project that contains working with data (contracts, repositories, ORM Models) and main Dijkstra algorithm for finding shortest path on the graph.
 - **ShortestWayFinder.Tests** - Unit tests on an algorithm and for testing controllers logic.
 
-##Internal dependencies
+## Internal dependencies
 - **ShortestWayFinder.Web** -> ShortestWayFinder.Domain
 - **ShortestWayFinder.Tests** -> ShortestWayFinder.Domain, ShortestWayFinder.Web
 
@@ -48,4 +48,3 @@ path between them should be displayed.
 As you may notice, one point may be connected to many other points on the map. As a data
 storage you may use any SQL database or text files, only databases supporting graph
 structures are forbidden.
-
