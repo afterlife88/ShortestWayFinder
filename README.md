@@ -1,9 +1,6 @@
 # Shortest Way Finder
 ### It-Challenges 2016 fall, back-end qualification round
 
-## Demo
-> - http://challenge-task.info
-
 
 ## Run in docker
 ### Pull image of application from docker hub and run on 8080 port:
